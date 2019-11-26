@@ -16,6 +16,16 @@
 <script src="{{asset('dashboard/js/morris.min.js')}}"></script>
 <script src="{{asset('dashboard/js/raphael-2.1.0.min.js')}}"></script>
 
+{{-- for jquery validation --}}
+<script src="{{asset('dashboard/js/jquery.validate.min.js')}}"></script>
+
+{{-- for axios --}}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+{{-- sweetalert2 --}}
+<script src="{{asset('js/sweetalert2.all.min.js')}}"></script>
+
+
 
 @stack('script')
 

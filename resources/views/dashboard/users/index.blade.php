@@ -6,78 +6,82 @@
 
 @section('content')
 <div class="pageheader">
-        <h2><i class="glyphicon glyphicon-user"></i> @lang('site.users') <span>@lang('site.user_create')</span></h2>
-        <div class="breadcrumb-wrapper">
-            <span class="label">You are here:</span>
-            <ol class="breadcrumb">
-                <li><a href="index.html">Bracket</a></li>
-                <li class="active">Dashboard</li>
-            </ol>
-        </div>
+    <h2><i class="glyphicon glyphicon-user"></i> @lang('site.users') <span>@lang('site.user_create')</span></h2>
+    <div class="breadcrumb-wrapper">
+        <span class="label">You are here:</span>
+        <ol class="breadcrumb">
+            <li><a href="index.html">Bracket</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
     </div>
+</div>
 
-    <div class="contentpanel">
-        <div class="panel panel-default">
+<div class="contentpanel">
+    <div class="panel panel-default">
         <div class="panel-heading">
-          <div class="panel-btns">
-            <a href="" class="panel-close">&times;</a>
-            <a href="" class="minimize">&minus;</a>
-          </div><!-- panel-btns -->
-          <h3 class="panel-title">@lang('site.users')</h3>
-          <p></p>
+            <div class="panel-btns">
+                <a href="" class="panel-close">&times;</a>
+                <a href="" class="minimize">&minus;</a>
+            </div><!-- panel-btns -->
+            <h3 class="panel-title">@lang('site.users')</h3>
+            <p></p>
         </div>
         <div class="panel-body">
-          <div class="table-responsive">
-            <table class="table" id="table1">
-            <a href="{{route('dashboard.users.create')}}" class="btn btn-primary pull-right" style="margin: 0 0 22px 22px">@lang('site.add')</a>
-              <thead>
-                 <tr>
-                    <th>id</th>
-                    <th>@lang('site.first_name')</th>
-                    <th>@lang('site.last_name')</th>
-                    <th>@lang('site.email')</th>
-                    <th>@lang('site.updated_at')</th>
-                    <th>@lang('site.created_at')</th>
-                 </tr>
-              </thead>
-              <tbody>
-                 <tr class="odd gradeX">
-                    <td>Trident</td>
-                    <td>Internet
-                        Explorer 4.0</td>
-                    <td>Win 95+</td>
-                    <td class="center"> 4</td>
-                    <td class="center">X</td>
-                 </tr>
-                 <tr class="even gradeC">
-                    <td>Trident</td>
-                    <td>Internet
-                        Explorer 5.0</td>
-                    <td>Win 95+</td>
-                    <td class="center">5</td>
-                    <td class="center">C</td>
-                 </tr>
+            <div class="table-responsive">
+                <table class="table" id="table1">
+                    <a href="{{route('dashboard.users.create')}}" class="btn btn-primary pull-right"
+                        style="margin: 0 0 22px 22px">@lang('site.add')</a>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>@lang('site.first_name')</th>
+                            <th>@lang('site.last_name')</th>
+                            <th>@lang('site.email')</th>
+                            <th>@lang('site.updated_at')</th>
+                            <th>@lang('site.created_at')</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd gradeX">
+                            <td>Trident</td>
+                            <td>Internet
+                                Explorer 4.0</td>
+                            <td>Win 95+</td>
+                            <td class="center"> 4</td>
+                            <td class="center">X</td>
+                        </tr>
+                        <tr class="even gradeC">
+                            <td>Trident</td>
+                            <td>Internet
+                                Explorer 5.0</td>
+                            <td>Win 95+</td>
+                            <td class="center">5</td>
+                            <td class="center">C</td>
+                        </tr>
 
 
-              </tbody>
-           </table>
-          </div><!-- table-responsive -->
+                    </tbody>
+                </table>
+            </div><!-- table-responsive -->
 
 
         </div><!-- panel-body -->
-      </div><!-- panel -->
+    </div><!-- panel -->
+
+
 </div>
+
+
+
 @endsection
 
 @push('script')
-    <script src="{{asset('dashboard/js/jquery.datatables.min.js')}}"></script>
-    <script src="{{asset('dashboard/js/select2.min.js')}}"></script>
 
+<script src="{{asset('dashboard/js/jquery.datatables.min.js')}}"></script>
+<script src="{{asset('dashboard/js/select2.min.js')}}"></script>
 
-
-    <script>
-
-            jQuery(document).ready(function() {
+<script>
+    jQuery(document).ready(function() {
 
 
               "use strict";
@@ -112,9 +116,10 @@
 
               // Show aciton upon row hover
 
-
-
             });
-          </script>
+
+</script>
+
+@include('partials._session')
 
 @endpush

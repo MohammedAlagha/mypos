@@ -48,9 +48,11 @@ class UserController extends Controller
 
         $request['password'] = bcrypt($request->password);
 
-        User::create($request->all());
-        
-        session()->flash('success', ('site.add_successfully'));
+        $user = User::create($request->all());
+
+        $user->attachRole('admin');
+        $user->syncPermissions($request->permissions);
+        $request->session()->flash('success', __('site.add_successfully'));
 
         return redirect()->route('dashboard.users.index');
 
