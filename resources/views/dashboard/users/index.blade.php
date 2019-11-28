@@ -29,7 +29,7 @@
         <div class="panel-body">
             <div class="table-responsive">
                 <table class="table" id="table1">
-                    @if (auth()->user()->can('create-user'))
+                    @if (auth()->user()->can('create_users'))
                         <a href="{{route('dashboard.users.create')}}" class="btn btn-primary pull-right"
                         style="margin: 0 0 22px 22px"><i class="fa fa-plus"></i> @lang('site.add')</a>
                     @else

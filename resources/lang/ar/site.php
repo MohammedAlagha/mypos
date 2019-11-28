@@ -3,6 +3,8 @@
 return [
         'dashboard'                =>  'الرئيسية',
 
+        'logout'                    => 'تسجيل خروج',
+
         'users'                    =>  'المشرفين',
         'user_create'              =>  'انشاء مشرف',
         'first_name'               =>  'الاسم الأول',

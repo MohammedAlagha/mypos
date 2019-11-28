@@ -15,7 +15,7 @@ class UserController extends Controller
     {
         $this->middleware(['permission:read_users'])->only('index');
         $this->middleware(['permission:create_users'])->only('create');
-        $this->middleware(['permission:edit_users'])->only('edit');
+        $this->middleware(['permission:update_users'])->only('edit');
         $this->middleware(['permission:delete_users'])->only('destroy');
 
     }
@@ -89,12 +89,20 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-
+        return view("dashboard.users.edit",compact('user'));
     }//end of edit
 
 
     public function update(Request $request, User $user)
     {
+        // dd($request->all());
+        $user ->update($request->all());
+        $user->syncPermissions($request->permissions);
+        $request->session()->flash('success', __('site.edit_successfully'));
+
+        return redirect()->route('dashboard.users.index');
+
+
 
     }//end of update
 
