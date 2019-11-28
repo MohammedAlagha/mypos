@@ -29,8 +29,14 @@
         <div class="panel-body">
             <div class="table-responsive">
                 <table class="table" id="table1">
-                    <a href="{{route('dashboard.users.create')}}" class="btn btn-primary pull-right"
-                        style="margin: 0 0 22px 22px">@lang('site.add')</a>
+                    @if (auth()->user()->can('create-user'))
+                        <a href="{{route('dashboard.users.create')}}" class="btn btn-primary pull-right"
+                        style="margin: 0 0 22px 22px"><i class="fa fa-plus"></i> @lang('site.add')</a>
+                    @else
+                        <a class="btn btn-primary pull-right"
+                        style="margin: 0 0 22px 22px"><i class=" fa fa-plus"></i> @lang('site.add')</a>
+                    @endif
+
                     <thead>
                         <tr>
                             <th>id</th>
@@ -39,6 +45,7 @@
                             <th>@lang('site.email')</th>
                             <th>@lang('site.updated_at')</th>
                             <th>@lang('site.created_at')</th>
+                            <th style="width:10%">@lang('site.options')</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -99,6 +106,7 @@
                     {data: 'email'},
                     {data: 'updated_at'},
                     {data: 'created_at'},
+                    {data: 'action'},
                     // {data: 'action', orderable: false, searchable: false}
                 ]
               });

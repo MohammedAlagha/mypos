@@ -23,6 +23,8 @@ return [
         'created_at'               =>  'أنشئ في',
         'updated_at'               =>  'اخر تعديل',
 
+        'options'                  =>  'خيارات',
+
         'no_data_found'            =>  'لا يوجد بيانات',
 
         'add_successfully'         =>  'تم اضافة البيانات بجاح',

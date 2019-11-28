@@ -192,7 +192,7 @@
           <div class="btn-group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
               <img src="images/photos/loggeduser.png" alt="" />
-              John Doe
+              {{auth()->user()->full_name}}
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-usermenu pull-right">

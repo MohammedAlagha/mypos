@@ -11,6 +11,15 @@ use DataTables;
 class UserController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware(['permission:read_users'])->only('index');
+        $this->middleware(['permission:create_users'])->only('create');
+        $this->middleware(['permission:edit_users'])->only('edit');
+        $this->middleware(['permission:delete_users'])->only('destroy');
+
+    }
+
     public function index()
     {
         $user = User::all();
@@ -23,12 +32,30 @@ class UserController extends Controller
         $users = User::all();
 
         return DataTables::of($users)
-        // ->addColumn('action',function($users){
-        //     return "<a class='btn btn-xs btn-primary edit'  data-id= '$users->id' data-url='".route('categories.update',$users->id)."' data-value = '".$users->name."'><i class='glyphicon glyphicon-edit'></i>Edit</a>
-        //     <a class='btn btn-xs btn-danger delete' data-url='". route('categories.destroy',$users->id) ."' data-id= '$users->id'><i class='glyphicon glyphicon-trash'></i>Delete</a>";
+        ->addColumn('action',function($users){
 
+            if (auth()->user()->can(['update_users','delete_users'],true)) {
+                return "<a class='btn btn-xs btn-primary edit' href='".route('dashboard.users.edit',$users->id)."' data-value = '".$users->name."'><i class='glyphicon glyphicon-edit'></i></a>
+                         <a class='btn btn-xs btn-danger delete'  data-id= '$users->id' data-url='". route('dashboard.users.destroy',$users->id) ."'><i class='glyphicon glyphicon-trash'></i></a>";
+
+            }elseif(auth()->user()->can('update_users')){
+                return "<a class='btn btn-xs btn-primary edit' href='".route('dashboard.users.edit',$users->id)."' data-value = '".$users->name."'><i class='glyphicon glyphicon-edit'></i></a>
+                <a class='btn btn-xs btn-danger delete'><i class='glyphicon glyphicon-trash'></i></a>";
+
+            }elseif(auth()->user()->can('delete_users')){
+                 return "<a class='btn btn-xs btn-primary edit'><i class='glyphicon glyphicon-edit'></i></a>
+                     <a class='btn btn-xs btn-danger delete'  data-id= '$users->id' data-url='". route('dashboard.users.destroy',$users->id) ."'><i class='glyphicon glyphicon-trash'></i></a>";
+
+            }else {
+                return "<a class='btn btn-xs btn-primary edit'><i class='glyphicon glyphicon-edit'></i></a>
+                <a class='btn btn-xs btn-danger delete' ><i class='glyphicon glyphicon-trash'></i></a>";
+
+            }
+        // ->addColumn('action',function($users){
+        //     return "<a class='btn btn-xs btn-primary edit'  data-id= '$users->id' data-url='".route('dashboard.users.edit',$users->id)."' data-value = '".$users->name."'><i class='glyphicon glyphicon-edit'></i></a>
+        //            <a class='btn btn-xs btn-danger delete'  data-url='". route('dashboard.users.destroy',$users->id) ."' data-id= '$users->id'><i class='glyphicon glyphicon-trash'></i></a>";
         // })
-        ->make(true);
+        })->make(true);
 
 
     }//end of data
