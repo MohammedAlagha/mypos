@@ -19,6 +19,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $user->attachRole('super_admin');
+        // factory(App\User::class,30)->create();
 
     }//end of run
 }//end of seeder

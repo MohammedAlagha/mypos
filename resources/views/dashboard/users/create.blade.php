@@ -34,20 +34,20 @@
                         <label class="col-sm-3 control-label">@lang('site.first_name') <span
                                 class="asterisk">*</span></label>
                         <div class="col-sm-6">
-                            <input type="text" name='first_name' placeholder=""  value = {{old('first_name')}} class="form-control" required />
+                        <input type="text" name='first_name' placeholder="" value="{{old('first_name')}}" class="form-control" required />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('site.last_name')<span
                                 class="asterisk">*</span></label>
                         <div class="col-sm-6">
-                            <input type="text" name='last_name' placeholder="" value = {{old('last_name')}} class="form-control" required />
+                            <input type="text" name='last_name' placeholder="" value="{{old('last_name')}}" class="form-control" required />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('site.email')<span class="asterisk">*</span></label>
                         <div class="col-sm-6">
-                            <input type="email" name='email' placeholder="" value = {{old('email')}} class="form-control" required />
+                            <input type="email" name='email' placeholder="" value="{{old('email')}}" class="form-control" required />
                         </div>
                     </div>
                     <div class="form-group">

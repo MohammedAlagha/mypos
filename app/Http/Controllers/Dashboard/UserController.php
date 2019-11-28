@@ -109,6 +109,9 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        $user->delete();
+
+        return \response()->json(['status'=>true,'message'=>__('site.delete_successfully')]);
 
     }//end of destroy
 }

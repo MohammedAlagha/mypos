@@ -48,26 +48,6 @@
                             <th style="width:10%">@lang('site.options')</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="odd gradeX">
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 4.0</td>
-                            <td>Win 95+</td>
-                            <td class="center"> 4</td>
-                            <td class="center">X</td>
-                        </tr>
-                        <tr class="even gradeC">
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 5.0</td>
-                            <td>Win 95+</td>
-                            <td class="center">5</td>
-                            <td class="center">C</td>
-                        </tr>
-
-
-                    </tbody>
                 </table>
             </div><!-- table-responsive -->
 
@@ -93,23 +73,22 @@
 
               "use strict";
 
-              jQuery('#table1').dataTable({
-                serverSide: true,
-                processing: true,
-                ajax: {
-                    "url": "{{route('dashboard.users.data')}}",
-                },
-                columns: [
-                    {data: 'id'},
-                    {data: 'first_name'},
-                    {data: 'last_name'},
-                    {data: 'email'},
-                    {data: 'updated_at'},
-                    {data: 'created_at'},
-                    {data: 'action'},
-                    // {data: 'action', orderable: false, searchable: false}
-                ]
-              });
+              var table = jQuery('#table1').DataTable({     //For making the table and I give it name to call it
+                        serverSide: true,
+                        processing: true,
+                        ajax: {
+                            "url": "{{route('dashboard.users.data')}}",
+                        },
+                        columns: [
+                            {data: 'id'},
+                            {data: 'first_name'},
+                            {data: 'last_name'},
+                            {data: 'email'},
+                            {data: 'updated_at'},
+                            {data: 'created_at'},
+                            {data: 'action', orderable: false, searchable: false}
+                         ]
+                        });
 
 
               // Select2
@@ -119,12 +98,56 @@
 
               jQuery('select').removeClass('form-control');
 
-              // Delete row in a table
-
-
-              // Show aciton upon row hover
-
             });
+
+            $(document).on('click','.delete' ,function (event) {
+            event.preventDefault();
+            var url = $(this).data('url');
+            Swal.fire({
+                title: 'Are you sure',
+                text: "",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'delete',
+                cancelButtonText: 'cancel',
+                preConfirm: function () {
+                    return new Promise(function (resolve, reject) {
+                        $.ajax({
+                            url: url,
+                            type: 'Delete',
+                            data:{_token: '{{ csrf_token() }}'},
+                            dataType: 'json',
+                            success: function (response) {
+                                if(response.status == true){
+                                    Swal.fire({
+                                            text: response.message,
+                                            timer: 2000,
+                                            icon:"success",
+                                            showCancelButton: false,
+                                            showConfirmButton: false
+                                        });
+                                            table.ajax.reload(null, false);  //I need to pass parameters for keeping current page like
+                                }else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: response.message,
+
+                                    })
+                                }
+
+                            },
+                            error: function (response) {
+                                console.log(response)
+
+                            }
+                        });
+                    });
+                },
+                allowOutsideClick: false
+            }).then(function () {});
+        });
 
 </script>
 
