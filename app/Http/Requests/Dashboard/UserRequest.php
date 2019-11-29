@@ -35,7 +35,7 @@ class UserRequest extends FormRequest
                 return [
                     'first_name' =>'required|min:4',
                     'last_name' =>'required|min:4',
-                    'email' =>'required|email',
+                    'email' =>'required|email|unique:users,email',
                     'password' =>'required|min:8|confirmed',
                     'password_confirmation' =>'required|min:8',
 
@@ -43,11 +43,11 @@ class UserRequest extends FormRequest
                 break;
 
             case "PUT":
-            case 'PATCH':
+            case "PATCH":
                 return [
                     'first_name' =>'required|min:4',
                     'last_name' =>'required|min:4',
-                    'email' =>'required|email',
+                    'email' =>'required|email|unique:users,email',
                     'password' =>'required|min:8|confirmed',
                     'password_confirmation' =>'required|min:8',
                 ];

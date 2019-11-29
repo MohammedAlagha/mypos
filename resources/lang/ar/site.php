@@ -3,15 +3,18 @@
 return [
         'dashboard'                =>  'الرئيسية',
 
-        'logout'                    => 'تسجيل خروج',
+        'logout'                   => 'تسجيل خروج',
 
         'users'                    =>  'المشرفين',
         'user_create'              =>  'انشاء مشرف',
+
         'first_name'               =>  'الاسم الأول',
         'last_name'                =>  'الاسم الأخير',
         'email'                    =>  'الايميل',
+        'image'                    =>  'صورة',
         'password'                 =>  'كلمة المرور',
         'password_confirmation'    =>  'تأكيد كلمة المرور',
+
 
         'add'                      =>  'اضافة',
         'create'                   =>  'اضافة',
@@ -37,6 +40,10 @@ return [
 
         'categories'               =>  'الفئات',
         'products'                 =>  'المنتجات',
+
+        'are_you_sure'             =>  'هل أنت متأكد',
+        'yes'                      =>  'نعم',
+
 
 
 

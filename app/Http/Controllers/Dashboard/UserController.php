@@ -7,6 +7,7 @@ use App\Http\Requests\Dashboard\UserRequest;
 use App\User;
 use Illuminate\Http\Request;
 use DataTables;
+use Intervention\Image;
 
 class UserController extends Controller
 {
@@ -73,6 +74,12 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
 
+        if($request->image){
+            Image::make($request->image)->resize(300,null,function($constraint){
+                $constraint->aspectRatio();
+            });
+        }
+        dd();
         $request['password'] = bcrypt($request->password);
 
         $user = User::create($request->all());

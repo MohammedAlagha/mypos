@@ -63,8 +63,8 @@
 @endsection
 
 @push('script')
-
 <script src="{{asset('dashboard/js/jquery.datatables.min.js')}}"></script>
+
 <script src="{{asset('dashboard/js/select2.min.js')}}"></script>
 
 <script>
@@ -104,14 +104,14 @@
             event.preventDefault();
             var url = $(this).data('url');
             Swal.fire({
-                title: 'Are you sure',
+                title: '{{__('site.are_you_sure')}}',
                 text: "",
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'delete',
-                cancelButtonText: 'cancel',
+                confirmButtonText: '{{__('site.yes')}}',
+                cancelButtonText: '{{__('site.cancel')}}',
                 preConfirm: function () {
                     return new Promise(function (resolve, reject) {
                         $.ajax({
@@ -128,7 +128,7 @@
                                             showCancelButton: false,
                                             showConfirmButton: false
                                         });
-                                            table.ajax.reload(null, false);  //I need to pass parameters for keeping current page like
+                                        jQuery('#table1').DataTable().ajax.reload(null, false);  //I need to pass parameters for keeping current page like
                                 }else {
                                     Swal.fire({
                                         icon: 'error',

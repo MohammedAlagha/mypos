@@ -22,6 +22,8 @@
 {{-- for axios --}}
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+
+
 {{-- sweetalert2 --}}
 <script src="{{asset('js/sweetalert2.all.min.js')}}"></script>
 

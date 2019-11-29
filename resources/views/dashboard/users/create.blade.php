@@ -26,7 +26,7 @@
         </div>
         <div class="panel-body panel-body-nopadding">
             @include('partials._errors')
-            {!! Form::open(['route'=>'dashboard.users.store' ,'id'=>"user-create",'class'=>'form-horizontal' ,
+            {!! Form::open(['route'=>'dashboard.users.store' ,'files'=>true ,'id'=>"user-create",'class'=>'form-horizontal' ,
             'method'=>"post" ]) !!}
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -50,6 +50,12 @@
                             <input type="email" name='email' placeholder="" value="{{old('email')}}" class="form-control" required />
                         </div>
                     </div>
+                    <div class="form-group">
+                            <label class="col-sm-3 control-label">@lang('site.image')<span class="asterisk">*</span></label>
+                            <div class="col-sm-6">
+                                <input type="file" name='image' placeholder="" value="" class="form-control" required />
+                            </div>
+                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('site.password')<span
                                 class="asterisk">*</span></label>
