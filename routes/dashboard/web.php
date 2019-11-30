@@ -17,6 +17,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
             Route::resource('users', 'UserController')->except(['show']);
             Route::get('users-data', 'UserController@data')->name('users.data');
 
+            Route::resource('categories', 'CategoryController')->except(['show']);
+            Route::get('categories-data', 'CategoryController@data')->name('categories.data');
+
+
 
         });//end of dashboard Routes
     });

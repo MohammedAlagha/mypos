@@ -40,6 +40,9 @@
           @if (auth()->user()->hasPermission('read_users'))
             <li><a href="{{route('dashboard.users.index')}}"><i class="glyphicon glyphicon-user"></i> <span>@lang('site.users')</span></a></li>
           @endif
+          @if (auth()->user()->hasPermission('read_categories'))
+            <li><a href="{{route('dashboard.categories.index')}}"><i class="glyphicon glyphicon-user"></i> <span>@lang('site.categories')</span></a></li>
+          @endif
 
 
           </ul>

@@ -13,6 +13,12 @@ return [
         'user_create'              =>  'انشاء مشرف',
         'user_edit'                =>  'تعديل مشرف',
 
+        'category'                 =>  'الفئات',
+        'category_create'          =>  'انشاء فئة',
+        'category_edit'            =>  'تعديل فئة',
+
+        'name'                      =>'الاسم',
+        
         'first_name'               =>  'الاسم الأول',
         'last_name'                =>  'الاسم الأخير',
         'email'                    =>  'الايميل',

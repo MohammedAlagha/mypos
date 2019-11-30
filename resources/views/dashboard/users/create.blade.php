@@ -21,7 +21,7 @@
                 <a href="" class="panel-close">&times;</a>
                 <a href="" class="minimize">&minus;</a>
             </div>
-            <h4 class="panel-title">انشاء مشرف</h4>
+            <h4 class="panel-title">@lang('site.user_create')</h4>
 
         </div>
         <div class="panel-body panel-body-nopadding">
