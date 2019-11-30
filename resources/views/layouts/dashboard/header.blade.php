@@ -32,9 +32,12 @@
   <script src="js/respond.min.js"></script>
   <![endif]-->
 </head>
-<body>
+
+<body class=@if(auth()->user() == null) signin @endif>
+        {{-- @if(auth()->user() == null)
+        <div style="color:brown">aadcexz</div>
+        @endif --}}
     <!-- Preloader -->
-    <body>
         <!-- Preloader -->
         {{-- <div id="preloader">
             <div id="status"><i class="fa fa-spinner fa-spin"></i></div>

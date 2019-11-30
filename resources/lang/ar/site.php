@@ -1,12 +1,17 @@
 <?php
 
 return [
+
         'dashboard'                =>  'الرئيسية',
 
-        'logout'                   => 'تسجيل خروج',
+        'login'                    =>  'تسجيل دخول',
+        'logout'                   =>  'تسجيل خروج',
+        'forget_your_password'     =>  'هل نسيت كملة المرور؟',
+
 
         'users'                    =>  'المشرفين',
         'user_create'              =>  'انشاء مشرف',
+        'user_edit'                =>  'تعديل مشرف',
 
         'first_name'               =>  'الاسم الأول',
         'last_name'                =>  'الاسم الأخير',
