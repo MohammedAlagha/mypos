@@ -26,6 +26,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $appends = [
+        'image_path'
+    ];
+
     protected $hidden = [
         'password', 'remember_token',
     ];
@@ -47,7 +51,12 @@ class User extends Authenticatable
         return ucfirst($value);
     }
 
-    public function getFullNameAttribute($value){
+    public function getFullNameAttribute(){
         return "{$this->first_name} {$this->last_name}";
     }
+
+    public function getImagePathAttribute(){
+        return asset('uploads/user_images/' . $this->image);
+
+    }// end of get image path
 }

@@ -170,23 +170,23 @@
             </div>
           </div>
         </li>
-        <li>
-                <div class="btn-group">
-                  <button class="btn btn-default dropdown-toggle tp-icon" data-toggle="dropdown">
-                    <i class="fa fa-language"></i>
-                  </button>
-                  <div class="dropdown-menu pull-right">
-                    <ul class="">
-                       @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                            <li>
-                                <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                    {{ $properties['native'] }}
-                                </a>
-                            </li>
-                      @endforeach
-                    </ul>
-                  </div>
-                </div>
+                <li>
+                    <div class="btn-group">
+                    <button class="btn btn-default dropdown-toggle tp-icon" data-toggle="dropdown">
+                        <i class="fa fa-language"></i>
+                    </button>
+                    <div class="dropdown-menu pull-right">
+                        <ul class="">
+                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                <li>
+                                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                        {{ $properties['native'] }}
+                                    </a>
+                                </li>
+                        @endforeach
+                        </ul>
+                    </div>
+                    </div>
               </li>
         <li>
           <div class="btn-group">

@@ -26,8 +26,10 @@
         </div>
         <div class="panel-body panel-body-nopadding">
             @include('partials._errors')
-            {!! Form::open(['route'=>['dashboard.users.update',$user->id ],'id'=>"user-edit",'class'=>'form-horizontal' ,
+            {!! Form::open(['route'=>['dashboard.users.update',$user->id ],'id'=>"user-edit",'class'=>'form-horizontal','files'=>true,
             'method'=>"patch" ]) !!}
+
+             <input type="hidden" name="id" value="{{$user->id}}">   {{-- hidden id for validation request only --}}
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="form-group">
@@ -49,6 +51,17 @@
                         <div class="col-sm-6">
                         <input type="email" name='email' placeholder="" class="form-control" value="{{$user->email}}" required />
                         </div>
+                    </div>
+                    <div class="form-group">
+                            <label class="col-sm-3 control-label">@lang('site.image')</label>
+                            <div class="col-sm-6">
+                                <input type="file" name='image' placeholder="" value="" class="form-control" id="image"  />
+                    </div>
+
+                    <div class="form-group ">
+                            <label class="col-sm-4 control-label"></label>
+                            <div class="col-sm-6">
+                            <img src="{{$user->image_path}}" alt="" style="size:100px" class="img-thumbnail" id="image-preview">
                     </div>
                     {{-- <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('site.password')<span
@@ -140,18 +153,34 @@
 
 
 <script>
+
     jQuery(document).ready(function(){
-    console.log('d')
-    "use strict";
-    jQuery("#user-edit").validate({
-        highlight: function(element) {
-        jQuery(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-        },
-        success: function(element) {
-        jQuery(element).closest('.form-group').removeClass('has-error');
+        "use strict";
+        jQuery("#user-edit").validate({
+            highlight: function(element) {
+            jQuery(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+            },
+            success: function(element) {
+            jQuery(element).closest('.form-group').removeClass('has-error');
+            }
+        });
+    });
+
+    jQuery('#image').change(function(){
+
+        if (this.files && this.files[0]) {
+        var reader = new FileReader();
+
+            reader.onload = function(e) {
+                jQuery('#image-preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(this.files[0]);
         }
     });
-});
+
+
+
 
 </script>
 @endpush

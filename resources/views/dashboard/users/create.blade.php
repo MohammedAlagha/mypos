@@ -26,7 +26,7 @@
         </div>
         <div class="panel-body panel-body-nopadding">
             @include('partials._errors')
-            {!! Form::open(['route'=>'dashboard.users.store' ,'files'=>true ,'id'=>"user-create",'class'=>'form-horizontal' ,
+            {!! Form::open(['route'=>'dashboard.users.store' ,'id'=>"user-create",'class'=>'form-horizontal', 'files'=>true,
             'method'=>"post" ]) !!}
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -51,12 +51,18 @@
                         </div>
                     </div>
                     <div class="form-group">
-                            <label class="col-sm-3 control-label">@lang('site.image')<span class="asterisk">*</span></label>
+                            <label class="col-sm-3 control-label">@lang('site.image')</label>
                             <div class="col-sm-6">
-                                <input type="file" name='image' placeholder="" value="" class="form-control" required />
-                            </div>
-                     </div>
-                    <div class="form-group">
+                                <input type="file" name='image' placeholder="" class="form-control" id="image"  />
+                    </div>
+
+                    <div class="form-group offset-md-4">
+                            <label class="col-sm-4 control-label"></label>
+                            <div class="col-sm-6">
+                            <img src="{{asset('uploads/user_images/default.png')}}" alt="" style="size:100px" class="img-thumbnail" id="image-preview">
+                    </div>
+                    </div>
+                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('site.password')<span
                                 class="asterisk">*</span></label>
                         <div class="col-sm-6">
@@ -158,6 +164,23 @@
         }
     });
 });
+
+
+jQuery('#image').change(function(){
+
+  if (this.files && this.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+        jQuery('#image-preview').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(this.files[0]);
+  }
+});
+
+
+
 
 </script>
 @endpush

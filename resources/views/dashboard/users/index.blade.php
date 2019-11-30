@@ -43,6 +43,7 @@
                             <th>@lang('site.first_name')</th>
                             <th>@lang('site.last_name')</th>
                             <th>@lang('site.email')</th>
+                            <th>@lang('site.image')</th>
                             <th>@lang('site.updated_at')</th>
                             <th>@lang('site.created_at')</th>
                             <th style="width:10%">@lang('site.options')</th>
@@ -84,9 +85,11 @@
                             {data: 'first_name'},
                             {data: 'last_name'},
                             {data: 'email'},
+                            {data: 'image'},
                             {data: 'updated_at'},
                             {data: 'created_at'},
-                            {data: 'action', orderable: false, searchable: false}
+                            {data: 'action', orderable: false, searchable: false},
+
                          ]
                         });
 
