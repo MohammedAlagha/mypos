@@ -27,19 +27,21 @@
         </div>
         <div class="panel-body panel-body-nopadding">
             @include('partials._errors')
-            {!! Form::open(['route'=>['dashboard.categories.update',$category->id ],'id'=>"category-edit",'class'=>'form-horizontal','files'=>true,
-            'method'=>"patch" ]) !!}
+            {!! Form::open(['route'=>['dashboard.categories.update',$category->id ],'id'=>"category-edit",'class'=>'form-horizontal','method'=>"patch" ]) !!}
 
              <input type="hidden" name="id" value="{{$category->id}}">   {{-- hidden id for validation request only --}}
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">@lang('site.name') <span
-                                class="asterisk">*</span></label>
-                        <div class="col-sm-6">
-                        <input type="text" name='name' placeholder="" class="form-control" value="{{$category->name}}" required />
+                    @foreach (config('translatable.locales') as $locale)
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@lang('site.'$locale.'.name') <span
+                                    class="asterisk">*</span></label>
+                            <div class="col-sm-6">
+                            <input type="text" name="{{ $locale }}[name]" placeholder="" class="form-control" value="{{$category->translate($locale)->name}}" required />
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
 
                 </div>
             </div><!-- panel-body -->

@@ -27,17 +27,18 @@
         </div>
         <div class="panel-body panel-body-nopadding">
             @include('partials._errors')
-            {!! Form::open(['route'=>'dashboard.categories.store' ,'id'=>"category-create",'class'=>'form-horizontal', 'files'=>true,
-            'method'=>"post" ]) !!}
+            {!! Form::open(['route'=>'dashboard.categories.store' ,'id'=>"category-create",'class'=>'form-horizontal','method'=>"post" ]) !!}
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">@lang('site.name') <span
-                                class="asterisk">*</span></label>
-                        <div class="col-sm-6">
-                        <input type="text" name='name' placeholder="" value="{{old('name')}}" class="form-control" required />
+                    @foreach (config('translatable.locales') as $locale)
+                        <div class="form-group">
+                                <label class="col-sm-3 control-label">@lang('site.'.$locale.'.name') <span
+                                        class="asterisk">*</span></label>
+                                <div class="col-sm-6">
+                                <input type="text" name='{{ $locale }}[name]' placeholder="" value="{{old($locale.'.name')}}" class="form-control" required />
+                                </div>
                         </div>
-                    </div>
+                    @endforeach
 
                 </div>
             </div><!-- panel-body -->

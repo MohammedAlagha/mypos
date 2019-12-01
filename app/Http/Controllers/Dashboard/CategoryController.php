@@ -67,10 +67,11 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $category = Category::create($request->all());
 
+        Category::create($request->all());
+        // dd($request->all());
 
-        $request->session()->flash('success', __('site.add_successfully'));
+        session()->flash('success', __('site.add_successfully'));
 
         return redirect()->route('dashboard.categories.index');
     }
