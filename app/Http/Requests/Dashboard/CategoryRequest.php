@@ -32,20 +32,30 @@ class CategoryRequest extends FormRequest
                break;
 
            case "POST":
-               return [
-                   'name' =>'required|min:3'
-               ];
+            {
+
+                $rules = [];
+                foreach (config('translatable.locales') as $locale) {
+                    $rules += [$locale.'.name' =>'required|min:3|unique:category_translations,name'];
+                    };
+            return
+                     $rules
+            ;
+        }
                break;
 
            case "PUT":
            case "PATCH":
                {
                    $collection = collect($this->request)->toArray();
-               return [
 
-                   'name' => 'required|min:3|unique:categories,name,'.$collection['id']
-               ];
-
+                   $rules = [];
+                   foreach (config('translatable.locales') as $locale) {
+                       $rules += [$locale.'.name' =>'required|min:3|unique:category_translations,name,'.$collection['id'].',category_id'];
+                       };
+               return
+                        $rules
+               ;
            }
            break;
        }

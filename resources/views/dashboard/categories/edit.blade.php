@@ -35,7 +35,7 @@
                     @foreach (config('translatable.locales') as $locale)
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">@lang('site.'$locale.'.name') <span
+                            <label class="col-sm-3 control-label">@lang('site.'.$locale.'.name') <span
                                     class="asterisk">*</span></label>
                             <div class="col-sm-6">
                             <input type="text" name="{{ $locale }}[name]" placeholder="" class="form-control" value="{{$category->translate($locale)->name}}" required />
