@@ -38,11 +38,15 @@
           <li class="active"><a href=" {{route('dashboard.index')}} "><i class="fa fa-home"></i> <span>@lang('site.dashboard')</span></a></li>
 
           @if (auth()->user()->hasPermission('read_categories'))
-          <li><a href="{{route('dashboard.categories.index')}}"><i class="glyphicon glyphicon-user"></i> <span>@lang('site.categories')</span></a></li>
+          <li><a href="{{route('dashboard.categories.index')}}"><i class="glyphicon  glyphicon-th-large"></i> <span>@lang('site.categories')</span></a></li>
           @endif
 
           @if (auth()->user()->hasPermission('read_products'))
-          <li><a href="{{route('dashboard.products.index')}}"><i class="glyphicon glyphicon-user"></i> <span>@lang('site.products')</span></a></li>
+          <li><a href="{{route('dashboard.products.index')}}"><i class="glyphicon glyphicon-inbox"></i> <span>@lang('site.products')</span></a></li>
+          @endif
+
+          @if (auth()->user()->hasPermission('read_clients'))
+          <li><a href="{{route('dashboard.clients.index')}}"><i class="fa  fa-users"></i> <span>@lang('site.clients')</span></a></li>
           @endif
 
           @if (auth()->user()->hasPermission('read_users'))
