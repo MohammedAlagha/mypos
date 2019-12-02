@@ -5,11 +5,10 @@
 <div class="pageheader">
     <h2><i class="glyphicon glyphicon-user"></i> @lang('site.categories') <span>@lang('site.category_create')</span></h2>
     <div class="breadcrumb-wrapper">
-        <span class="label">You are here:</span>
         <ol class="breadcrumb">
+            <li><a href="{{route('dashboard.categories.create')}}">@lang('site.category_create')</a></li>
+            <li><a href="{{route('dashboard.categories.index')}}">@lang('site.categories')</a></li>
             <li class="active">@lang('site.dashboard')</li>
-            <li class="active">@lang('site.categories')</li>
-            <li class="active">@lang('site.category_create')</li>
         </ol>
     </div>
 </div>

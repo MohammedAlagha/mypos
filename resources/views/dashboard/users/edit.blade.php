@@ -7,8 +7,9 @@
     <div class="breadcrumb-wrapper">
         <span class="label">You are here:</span>
         <ol class="breadcrumb">
-            <li><a href="index.html">Bracket</a></li>
-            <li class="active">Dashboard</li>
+            <li><a href="{{route('dashboard.users.edit',[$user->id])}}">@lang('site.user_edit')</a></li>
+            <li><a href="{{route('dashboard.users.index')}}">@lang('site.users')</a></li>
+            <li class="active">@lang('site.dashboard')</li>
         </ol>
     </div>
 </div>

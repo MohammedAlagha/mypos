@@ -8,10 +8,9 @@
 <div class="pageheader">
     <h2><i class="glyphicon glyphicon-user"></i> @lang('site.users') <span>@lang('site.user_create')</span></h2>
     <div class="breadcrumb-wrapper">
-        <span class="label">You are here:</span>
         <ol class="breadcrumb">
-            <li><a href="index.html">Bracket</a></li>
-            <li class="active">Dashboard</li>
+            <li><a href="{{route('dashboard.users.index')}}">@lang('site.users')</a></li>
+            <li class="active">@lang('site.dashboard')</li>
         </ol>
     </div>
 </div>
