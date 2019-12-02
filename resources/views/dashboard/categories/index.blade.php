@@ -39,7 +39,7 @@
 
                     <thead>
                         <tr>
-                            <th>id</th>
+                            <th>@lang('site.id')</th>
                             <th>@lang('site.name')</th>
                             <th>@lang('site.updated_at')</th>
                             <th>@lang('site.created_at')</th>

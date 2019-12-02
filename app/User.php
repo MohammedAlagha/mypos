@@ -27,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $appends = [
-        'image_path'
+        'image_path','full_name'
     ];
 
     protected $hidden = [

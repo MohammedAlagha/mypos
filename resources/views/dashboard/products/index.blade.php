@@ -6,12 +6,12 @@
 
 @section('content')
 <div class="pageheader">
-    <h2><i class="glyphicon glyphicon-user"></i> @lang('site.users') <span>@lang('site.user_create')</span></h2>
+    <h2><i class="glyphicon glyphicon-user"></i> @lang('site.products') <span>@lang('site.user_create')</span></h2>
     <div class="breadcrumb-wrapper">
-        <span class="label">You are here:</span>
+
         <ol class="breadcrumb">
-            <li><a href="index.html">Bracket</a></li>
-            <li class="active">Dashboard</li>
+            <li><a href="{{route('dashboard.products.index')}}">@lang('site.products')</a></li>
+            <li class="active">@lang('site.dashboard')</li>
         </ol>
     </div>
 </div>
@@ -23,30 +23,31 @@
                 <a href="" class="panel-close">&times;</a>
                 <a href="" class="minimize">&minus;</a>
             </div><!-- panel-btns -->
-            <h3 class="panel-title">@lang('site.users')</h3>
+            <h3 class="panel-title">@lang('site.products')</h3>
             <p></p>
         </div>
         <div class="panel-body">
             <div class="table-responsive">
                 <table class="table" id="table1">
-                    @if (auth()->user()->can('create_users'))
-                        <a href="{{route('dashboard.users.create')}}" class="btn btn-primary pull-right"
+                    @if (auth()->user()->can('create_products'))
+                        <a href="{{route('dashboard.products.create')}}" class="btn btn-primary pull-right"
                         style="margin: 0 0 22px 22px"><i class="fa fa-plus"></i> @lang('site.add')</a>
                     @else
-                        <a class="btn btn-primary pull-right"
-                        style="margin: 0 0 22px 22px"><i class=" fa fa-plus"></i> @lang('site.add')</a>
+                        <a class="btn btn-primary pull-right" style="margin: 0 0 22px 22px"><i class=" fa fa-plus"></i> @lang('site.add')</a>
                     @endif
 
                     <thead>
                         <tr>
                             <th>@lang('site.id')</th>
-                            <th>@lang('site.first_name')</th>
-                            <th>@lang('site.last_name')</th>
-                            <th>@lang('site.email')</th>
-                            <th>@lang('site.image')</th>
+                            <th>@lang('site.name')</th>
+                            <th>@lang('site.category')</th>
+                            <th>@lang('site.purchase_price')</th>
+                            <th>@lang('site.sale_price')</th>
+                            <th>@lang('site.profit_percent')%</th>
+                            <th>@lang('site.stock')</th>
                             <th>@lang('site.updated_at')</th>
                             <th>@lang('site.created_at')</th>
-                            <th style="width:10%">@lang('site.options')</th>
+                            <th style="width:13%">@lang('site.options')</th>
                         </tr>
                     </thead>
                 </table>
@@ -78,14 +79,16 @@
                         serverSide: true,
                         processing: true,
                         ajax: {
-                            "url": "{{route('dashboard.users.data')}}",
+                            "url": "{{route('dashboard.products.data')}}",
                         },
                         columns: [
                             {data: 'id'},
-                            {data: 'first_name'},
-                            {data: 'last_name'},
-                            {data: 'email'},
-                            {data: 'image'},
+                            {data: 'name'},
+                            {data: 'category'},
+                            {data: 'purchase_price'},
+                            {data: 'sale_price'},
+                            {data: 'profit_percent'},
+                            {data: 'stock'},
                             {data: 'updated_at'},
                             {data: 'created_at'},
                             {data: 'action', orderable: false, searchable: false},

@@ -8,16 +8,9 @@ return [
         'logout'                   =>  'تسجيل خروج',
         'forget_your_password'     =>  'هل نسيت كملة المرور؟',
 
-
         'users'                    =>  'المشرفين',
         'user_create'              =>  'انشاء مشرف',
         'user_edit'                =>  'تعديل مشرف',
-
-        'category'                 =>  'الفئات',
-        'category_create'          =>  'انشاء فئة',
-        'category_edit'            =>  'تعديل فئة',
-
-        'name'                      =>'الاسم',
 
         'first_name'               =>  'الاسم الأول',
         'last_name'                =>  'الاسم الأخير',
@@ -26,6 +19,15 @@ return [
         'password'                 =>  'كلمة المرور',
         'password_confirmation'    =>  'تأكيد كلمة المرور',
 
+        'category'                 =>  'الفئة',
+        'categories'               =>  'الفئات',
+        'category_create'          =>  'انشاء فئة',
+        'category_edit'            =>  'تعديل فئة',
+        'category_select'          =>  'اختر فئة',
+
+        'name'                     =>'الاسم',
+
+        'id'                       => 'رقم',
 
         'add'                      =>  'اضافة',
         'create'                   =>  'اضافة',
@@ -56,12 +58,27 @@ return [
         'yes'                      =>  'نعم',
 
         'ar'                       =>  [
-        'name'                     => 'الاسم باللغة العربية'
+        'name'                     => 'الاسم باللغة العربية',
+        'decription'               => 'الوصف باللغة العربية',
                                        ],
 
        'en'                        =>  [
-       'name'                      => 'الاسم باللغة الانجليزية'
+       'name'                      => 'الاسم باللغة الانجليزية',
+       'decription'                => 'الوصف باللغة الانجليزية'
                                        ],
+
+       'products'                  =>  'المنتجات',
+       'product_create'            =>  'اضافة منتج',
+       'product_edit'              =>  'تعديل منتج',
+       'product_show'              =>  'عرض منتج',
+
+       'purchase_price'            =>  'سعر الشراء',
+       'sale_price'                =>  'سعر البيع',
+       'stock'                     =>  'المخزن',
+       'profit'                    =>  'الربح',
+       'profit_percent'            =>  'نسبة الربح',
+
+
 
 
 

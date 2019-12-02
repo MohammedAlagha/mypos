@@ -25,7 +25,8 @@ class CategoryController extends Controller
         return view('dashboard.categories.index');
     }
 
-    public function data(){
+    public function data()
+    {
 
         $categories = Category::all();
         //  dd($categories);
@@ -106,7 +107,10 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
+        if($category->image != 'default.png'){
 
+            Storage::disk('public_uploads')->delete('/product_images/' . $category->image);
+        }//end of if
         $category->delete();
 
         return \response()->json(['status'=>true,'message'=>__('site.delete_successfully')]);

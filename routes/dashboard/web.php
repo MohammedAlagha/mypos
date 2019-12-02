@@ -20,6 +20,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
             Route::resource('categories', 'CategoryController')->except(['show']);
             Route::get('categories-data', 'CategoryController@data')->name('categories.data');
 
+            Route::resource('products', 'ProductController');
+            Route::get('products-data', 'ProductController@data')->name('products.data');
+
 
 
         });//end of dashboard Routes
