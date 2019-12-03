@@ -38,23 +38,23 @@ class ProductController extends Controller
         ->addColumn('action',function($product){
 
             if (auth()->user()->can(['update_products','delete_products'],true)) {
-                return "<a class='btn btn-xs btn-primary edit' href='".route('dashboard.products.edit',$product->id)."' data-value = '".$product->name."'><i class='glyphicon glyphicon-edit'></i></a>
-                        <a class='btn btn-xs btn-success '  href='". route('dashboard.products.show',$product->id) ."'><i class='glyphicon glyphicon-eye-open'></i></a>
+                return "<a class='btn btn-xs btn-success '  href='". route('dashboard.products.show',$product->id) ."'><i class='glyphicon glyphicon-eye-open'></i></a>
+                        <a class='btn btn-xs btn-primary edit' href='".route('dashboard.products.edit',$product->id)."' data-value = '".$product->name."'><i class='glyphicon glyphicon-edit'></i></a>
                          <a class='btn btn-xs btn-danger delete'  data-id= '$product->id' data-url='". route('dashboard.products.destroy',$product->id) ."'><i class='glyphicon glyphicon-trash'></i></a>";
 
             }elseif(auth()->user()->can('update_products')){
-                return "<a class='btn btn-xs btn-primary edit' href='".route('dashboard.products.edit',$product->id)."' data-value = '".$product->name."'><i class='glyphicon glyphicon-edit'></i></a>
-                        <a class='btn btn-xs btn-success '  data-url='". route('dashboard.products.show',$product->id) ."'><i class='glyphicon  glyphicon-eye-open'></i></a>
+                return "<a class='btn btn-xs btn-success '  data-url='". route('dashboard.products.show',$product->id) ."'><i class='glyphicon  glyphicon-eye-open'></i></a>
+                        <a class='btn btn-xs btn-primary edit' href='".route('dashboard.products.edit',$product->id)."' data-value = '".$product->name."'><i class='glyphicon glyphicon-edit'></i></a>
                         <a class='btn btn-xs btn-danger delete'><i class='glyphicon glyphicon-trash'></i></a>";
 
             }elseif(auth()->user()->can('delete_products')){
-                 return "<a class='btn btn-xs btn-primary edit'><i class='glyphicon glyphicon-edit'></i></a>
-                        <a class='btn btn-xs btnsuccessr edit'  data-url='". route('dashboard.products.show',$product->id) ."'><i class='glyphicon  glyphicon-eye-open'></i></a>
+                 return "<a class='btn btn-xs btnsuccessr edit'  data-url='". route('dashboard.products.show',$product->id) ."'><i class='glyphicon  glyphicon-eye-open'></i></a>
+                         <a class='btn btn-xs btn-primary edit'><i class='glyphicon glyphicon-edit'></i></a>
                          <a class='btn btn-xs btn-danger delete'  data-id= '$product->id' data-url='". route('dashboard.products.destroy',$product->id) ."'><i class='glyphicon glyphicon-trash'></i></a>";
 
             }else {
-                return "<a class='btn btn-xs btn-primary edit'><i class='glyphicon glyphicon-edit'></i></a>
-                        <a class='btn btn-xs btn-success delete'  data-url='". route('dashboard.products.show',$product->id) ."'><i class='glyphicon  glyphicon-eye-open'></i></a>
+                return "<a class='btn btn-xs btn-success delete'  data-url='". route('dashboard.products.show',$product->id) ."'><i class='glyphicon  glyphicon-eye-open'></i></a>
+                         <a class='btn btn-xs btn-primary edit'><i class='glyphicon glyphicon-edit'></i></a>
                          <a class='btn btn-xs btn-danger delete' ><i class='glyphicon glyphicon-trash'></i></a>";
 
             }
@@ -80,7 +80,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        
+
         return view('dashboard.products.show',compact('product'));
     }//end of create
 
@@ -99,7 +99,7 @@ class ProductController extends Controller
         }
         Product::create($request_data);
 
-        session()->flash('success', __('site.add_successfully'));
+        session()->flash('success', __('site.added_successfully'));
 
         return redirect()->route('dashboard.products.index');
 

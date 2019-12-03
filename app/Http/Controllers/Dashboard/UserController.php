@@ -98,7 +98,7 @@ class UserController extends Controller
 
         $user->attachRole('admin');
         $user->syncPermissions($request->permissions);
-        $request->session()->flash('success', __('site.add_successfully'));
+        $request->session()->flash('success', __('site.added_successfully'));
 
         return redirect()->route('dashboard.users.index');
 

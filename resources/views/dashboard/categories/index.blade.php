@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="pageheader">
-    <h2><i class="glyphicon glyphicon-user"></i> @lang('site.categories') <span>@lang('site.category_create')</span></h2>
+    <h2><i class="glyphicon glyphicon-user"></i> @lang('site.categories') </h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li><a href="{{route('dashboard.categories.index')}}">@lang('site.categories')</a></li>

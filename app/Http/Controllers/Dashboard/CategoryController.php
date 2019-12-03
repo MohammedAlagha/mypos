@@ -73,7 +73,7 @@ class CategoryController extends Controller
         Category::create($request->all());
         // dd($request->all());
 
-        session()->flash('success', __('site.add_successfully'));
+        session()->flash('success', __('site.added_successfully'));
 
         return redirect()->route('dashboard.categories.index');
     }
@@ -98,7 +98,7 @@ class CategoryController extends Controller
 
 
 
-        $category ->update($request->all());
+        $category->update($request->all());
         $request->session()->flash('success', __('site.edit_successfully'));
 
         return redirect()->route('dashboard.categories.index');
@@ -113,7 +113,7 @@ class CategoryController extends Controller
         }//end of if
         $category->delete();
 
-        return \response()->json(['status'=>true,'message'=>__('site.delete_successfully')]);
+        return \response()->json(['status'=>true,'message'=> __('site.delete_successfully')]);
 
     }
 }

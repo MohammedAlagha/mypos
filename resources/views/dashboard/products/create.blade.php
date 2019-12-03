@@ -6,8 +6,8 @@
     <h2><i class="glyphicon glyphicon-user"></i> @lang('site.products') <span>@lang('site.product_create')</span></h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
-            <li><a href="{{route('dashboard.products.create')}}">@lang('site.product_create')</a></li>
-            <li><a href="{{route('dashboard.products.index')}}">@lang('site.products')</a></li>
+            <li><a href="index.html">@lang('site.product_create')</a></li>
+            <li><a href="index.html">@lang('site.products')</a></li>
             <li class="active">@lang('site.dashboard')</li>
         </ol>
     </div>

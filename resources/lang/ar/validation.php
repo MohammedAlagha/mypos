@@ -155,7 +155,7 @@ return [
         'password_confirmation' => 'تأكيد كلمة المرور',
         'city'                  => 'المدينة',
         'country'               => 'الدولة',
-        'address'               => 'عنوان السكن',
+        'address'               => 'عنوان ',
         'phone'                 => 'الهاتف',
         'mobile'                => 'الجوال',
         'age'                   => 'العمر',
@@ -188,7 +188,7 @@ return [
         'purchase_prise'        =>  'سعر الشراء',
         'sale_price'            =>  'سعر البيع',
         'stock'                 =>  'المخزن',
-        
+
 
     ],
 ];
