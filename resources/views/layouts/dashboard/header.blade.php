@@ -7,7 +7,7 @@
   <meta name="author" content="">
   <link rel="shortcut icon" href="{{asset('dashboard/images/favicon.png')}}" type="image/png">
 
-  <title>Bracket Responsive Bootstrap3 Admin</title>
+  <title>@yield('title')</title>
 
   <link href="{{asset('dashboard/css/style.default.css')}}" rel="stylesheet">
   @stack('head')

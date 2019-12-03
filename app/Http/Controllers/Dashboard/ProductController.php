@@ -45,17 +45,17 @@ class ProductController extends Controller
             }elseif(auth()->user()->can('update_products')){
                 return "<a class='btn btn-xs btn-success '  data-url='". route('dashboard.products.show',$product->id) ."'><i class='glyphicon  glyphicon-eye-open'></i></a>
                         <a class='btn btn-xs btn-primary edit' href='".route('dashboard.products.edit',$product->id)."' data-value = '".$product->name."'><i class='glyphicon glyphicon-edit'></i></a>
-                        <a class='btn btn-xs btn-danger delete'><i class='glyphicon glyphicon-trash'></i></a>";
+                        <a class='btn btn-xs btn-danger delete disabled'><i class='glyphicon glyphicon-trash'></i></a>";
 
             }elseif(auth()->user()->can('delete_products')){
-                 return "<a class='btn btn-xs btnsuccessr edit'  data-url='". route('dashboard.products.show',$product->id) ."'><i class='glyphicon  glyphicon-eye-open'></i></a>
-                         <a class='btn btn-xs btn-primary edit'><i class='glyphicon glyphicon-edit'></i></a>
-                         <a class='btn btn-xs btn-danger delete'  data-id= '$product->id' data-url='". route('dashboard.products.destroy',$product->id) ."'><i class='glyphicon glyphicon-trash'></i></a>";
+                 return "<a class='btn btn-xs btnsuccessr edit '  data-url='". route('dashboard.products.show',$product->id) ."'><i class='glyphicon  glyphicon-eye-open'></i></a>
+                         <a class='btn btn-xs btn-primary edit disabled'><i class='glyphicon glyphicon-edit'></i></a>
+                         <a class='btn btn-xs btn-danger delete '  data-id= '$product->id' data-url='". route('dashboard.products.destroy',$product->id) ."'><i class='glyphicon glyphicon-trash'></i></a>";
 
             }else {
                 return "<a class='btn btn-xs btn-success delete'  data-url='". route('dashboard.products.show',$product->id) ."'><i class='glyphicon  glyphicon-eye-open'></i></a>
-                         <a class='btn btn-xs btn-primary edit'><i class='glyphicon glyphicon-edit'></i></a>
-                         <a class='btn btn-xs btn-danger delete' ><i class='glyphicon glyphicon-trash'></i></a>";
+                         <a class='btn btn-xs btn-primary edit disabled'><i class='glyphicon glyphicon-edit'></i></a>
+                         <a class='btn btn-xs btn-danger delete disabled' ><i class='glyphicon glyphicon-trash'></i></a>";
 
             }
 

@@ -39,15 +39,15 @@ class CategoryController extends Controller
 
             }elseif(auth()->user()->can('update_categories')){
                 return "<a class='btn btn-xs btn-primary edit' href='".route('dashboard.categories.edit',$category->id)."' data-value = '".$category->name."'><i class='glyphicon glyphicon-edit'></i></a>
-                <a class='btn btn-xs btn-danger delete'><i class='glyphicon glyphicon-trash'></i></a>";
+                <a class='btn btn-xs btn-danger delete disabled'><i class='glyphicon glyphicon-trash'></i></a>";
 
             }elseif(auth()->user()->can('delete_categories')){
-                 return "<a class='btn btn-xs btn-primary edit'><i class='glyphicon glyphicon-edit'></i></a>
+                 return "<a class='btn btn-xs btn-primary edit disabled'><i class='glyphicon glyphicon-edit'></i></a>
                      <a class='btn btn-xs btn-danger delete'  data-id= '$category->id' data-url='". route('dashboard.categories.destroy',$category->id) ."'><i class='glyphicon glyphicon-trash'></i></a>";
 
             }else {
-                return "<a class='btn btn-xs btn-primary edit'><i class='glyphicon glyphicon-edit'></i></a>
-                <a class='btn btn-xs btn-danger delete' ><i class='glyphicon glyphicon-trash'></i></a>";
+                return "<a class='btn btn-xs btn-primary edit disabled'><i class='glyphicon glyphicon-edit'></i></a>
+                <a class='btn btn-xs btn-danger delete disabled' ><i class='glyphicon glyphicon-trash'></i></a>";
 
             }
 

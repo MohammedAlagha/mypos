@@ -13,7 +13,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function () {
 
             Route::get('/index', 'DashboardController@index')->name('index');
-             // users routes
+
+            // users routes
             Route::resource('users', 'UserController')->except(['show']);
             Route::get('users-data', 'UserController@data')->name('users.data');
 
@@ -24,11 +25,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
              // products routes
             Route::resource('products', 'ProductController');
             Route::get('products-data', 'ProductController@data')->name('products.data');
-            
+
              //clients  routes
             Route::resource('clients', 'ClientController');
             Route::get('clients-data', 'ClientController@data')->name('clients.data');
 
+            //clients  routes
+            Route::resource('clients', 'ClientController');
+            Route::get('clients-data', 'ClientController@data')->name('clients.data');
+            Route::resource('clients.orders', 'Client\OrderController');
 
 
         });//end of dashboard Routes

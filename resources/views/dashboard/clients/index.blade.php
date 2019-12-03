@@ -1,5 +1,7 @@
 @extends('layouts.dashboard.app')
 
+@section('title',__('site.clients'))
+
 @push('head')
 <link href="{{asset('dashboard/css/jquery.datatables.css')}}" rel="stylesheet">
 @endpush
@@ -41,6 +43,7 @@
                             <th>@lang('site.id')</th>
                             <th>@lang('site.name')</th>
                             <th>@lang('site.mobile')</th>
+                            <th>@lang('site.order_create')</th>
                             <th>@lang('site.updated_at')</th>
                             <th>@lang('site.created_at')</th>
                             <th style="width:13%">@lang('site.options')</th>
@@ -80,7 +83,8 @@
                         columns: [
                             {data: 'id'},
                             {data: 'name'},
-                            {data: 'mobile'},
+                            {data: 'mobile', orderable: false},
+                            {data: 'order_create', orderable: false, searchable: false},
                             {data: 'updated_at'},
                             {data: 'created_at'},
                             {data: 'action', orderable: false, searchable: false},

@@ -30,17 +30,24 @@ class ClientController extends Controller
                 } elseif (auth()->user()->can('update_clients')) {
                     return "<a class='btn btn-xs btn-success '  data-url='" . route('dashboard.clients.show', $client->id) . "'><i class='glyphicon  glyphicon-eye-open'></i></a>
                         <a class='btn btn-xs btn-primary edit' href='" . route('dashboard.clients.edit', $client->id) . "' data-value = '" . $client->name . "'><i class='glyphicon glyphicon-edit'></i></a>
-                        <a class='btn btn-xs btn-danger delete'><i class='glyphicon glyphicon-trash'></i></a>";
+                        <a class='btn btn-xs btn-danger delete disabled'><i class='glyphicon glyphicon-trash'></i></a>";
                 } elseif (auth()->user()->can('delete_clients')) {
                     return "<a class='btn btn-xs btnsuccessr edit'  data-url='" . route('dashboard.clients.show', $client->id) . "'><i class='glyphicon  glyphicon-eye-open'></i></a>
-                         <a class='btn btn-xs btn-primary edit'><i class='glyphicon glyphicon-edit'></i></a>
-                         <a class='btn btn-xs btn-danger delete'  data-id= '$client->id' data-url='" . route('dashboard.clients.destroy', $client->id) . "'><i class='glyphicon glyphicon-trash'></i></a>";
+                         <a class='btn btn-xs btn-primary edit disabled'><i class='glyphicon glyphicon-edit'></i></a>
+                         <a class='btn btn-xs btn-danger delete '  data-id= '$client->id' data-url='" . route('dashboard.clients.destroy', $client->id) . "'><i class='glyphicon glyphicon-trash'></i></a>";
                 } else {
                     return "<a class='btn btn-xs btn-success delete'  data-url='" . route('dashboard.clients.show', $client->id) . "'><i class='glyphicon  glyphicon-eye-open'></i></a>
-                        <a class='btn btn-xs btn-primary edit'><i class='glyphicon glyphicon-edit'></i></a>
-                         <a class='btn btn-xs btn-danger delete' ><i class='glyphicon glyphicon-trash'></i></a>";
+                        <a class='btn btn-xs btn-primary edit disabled'><i class='glyphicon glyphicon-edit'></i></a>
+                         <a class='btn btn-xs btn-danger delete disabled' ><i class='glyphicon glyphicon-trash'></i></a>";
                 }
-            })
+            })->addColumn('order_create',function ($client){
+                if ((auth()->user()->can('create_orders'))){
+                    return "<a href='".route('dashboard.clients.orders.create', $client->id)."' class ='btn btn-primary btn-sm'><i class='glyphicon glyphicon-plus'></i>  ".__('site.order_create')."</a>";
+
+                }else{
+                    return "<a class ='btn btn-primary btn-sm disabled '><i class='glyphicon glyphicon-plus'></i>  ".__('site.order_create')."</a>";
+                }
+            })->rawColumns(['action','order_create'])
             ->make(true);
     }
 

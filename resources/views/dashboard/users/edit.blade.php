@@ -84,7 +84,7 @@
                                     class="asterisk">*</span></label>
                             <div class="col-sm-6">
                                 @php
-                                    $models = ['users','categories','products'];
+                                    $models = ['users','categories','products','clients','orders'];
 
                                     $maps = ['create', 'read', 'update' ,'delete'];
                                 @endphp

@@ -15,6 +15,7 @@ return [
         'products'                 =>  'المنتجات',
         'clients'                  =>  'العملاء',
         'users'                    =>  'المشرفين',
+        'orders'                   =>  'الطلبات',
 
         'first_name'               =>  'الاسم الأول',
         'last_name'                =>  'الاسم الأخير',
@@ -30,13 +31,16 @@ return [
         'category_edit'            =>  'تعديل فئة',
         'category_select'          =>  'اختر فئة',
 
-        'product_create'            =>  'اضافة منتج',
-        'product_edit'              =>  'تعديل منتج',
-        'product_show'              =>  'عرض منتج',
+        'product_create'           =>  'اضافة منتج',
+        'product_edit'             =>  'تعديل منتج',
+        'product_show'             =>  'عرض منتج',
 
         'client_create'            =>  'اضافة عميل',
         'client_edit'              =>  'تعديل عميل',
         'client_show'              =>  'عرض عميل',
+
+        'order_create'             =>  'اضافة طلبية',
+        'order_edit'               =>  'تعديل طلبية',
 
         'user_create'              =>  'انشاء مشرف',
         'user_edit'                =>  'تعديل مشرف',
