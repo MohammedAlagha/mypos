@@ -16,110 +16,161 @@
     </div>
 </div>
 
-<div class="contentpanel">
+    <div class="contentpanel">
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="panel-btns">
-                <a href="" class="panel-close">&times;</a>
-                <a href="" class="minimize">&minus;</a>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel-heading">
+                    <h5 class="subtitle">@lang('site.categories')</h5>
+                </div>
+
+                <div class="panel-group" id="accordion">
+                    @foreach ($categories as $category)
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" class="collapsed" data-parent="#accordion"
+                                    href="#{{str_replace(' ','-',$category->translate(app()->getlocale())->name)}}">
+                                    {{$category->translate(app()->getlocale())->name}}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="{{str_replace(' ','-',$category->translate(app()->getlocale())->name)}}"
+                            class="panel-collapse collapse">
+                            <div class="panel-body">
+                                @if ($category->products->count() > 0)
+                                <table class="table table-hover">
+                                    <tr>
+                                        <th>@lang('site.name')</th>
+                                        <th>@lang('site.stock')</th>
+                                        <th>@lang('site.price')</th>
+                                        <th>@lang('site.add')</th>
+                                    </tr>
+                                    @foreach ($category->products as $product)
+                                    <tr>
+                                        <td>{{$product->name}}</td>
+                                        <td>{{$product->stock}}</td>
+                                        <td>{{$product->sale_price}}</td>
+                                        <td>
+                                            <a href="" id="product-{{$product->id}}" data-name="{{$product->name}}"
+                                                data-id="{{$product->id}}" data-price="{{$product->sale_price}}"
+                                                class="btn btn-success btn-sm add-product-btn">
+                                                <i class="fa fa-plus"></i>
+
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </table>
+                                @else
+                                 @lang('site.no_records')
+                                @endif
+                             </div>
+                        </div>
+                    </div>
+                    @endforeach
+
+                </div>
             </div>
-            <h4 class="panel-title">@lang('site.order_create')</h4>
 
-        </div>
-        <div class="panel-body panel-body-nopadding">
-            {{-- @include('partials._errors')
-            {!! Form::open(['route'=>'dashboard.clients.store' ,'id'=>"client-create",'class'=>'form-horizontal','method'=>"post" ]) !!}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">@lang('site.name')<span
-                                class="asterisk">*</span></label>
-                        <div class="col-sm-6">
-                            <input type="text" name='name' placeholder="" value="{{old('name')}}" class="form-control" required />
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h5 class="subtitle">@lang('site.orders')</h5>
                         </div>
-                    </div>
+                    <div class="panel-footer">
+                            <table class="table table-hover mb30">
+                                    <thead>
+                                      <tr>
+                                        <th>@lang('site.product')</th>
+                                        <th>@lang('site.quantity')</th>
+                                        <th>@lang('site.price')</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody class="order-list">
+                                      {{-- <tr>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                      </tr> --}}
+                                    </tbody>
+                                  </table>
+                                  <div>@lang('site.total') :<span class="total-price"></span></div>
+                                  <br>
+                                  <button class="btn btn-primary">@lang('site.order_create')</button>
+                    </div><!-- panel-footer -->
+                </div><!-- panel -->
+            </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">@lang('site.mobile')<span
-                                class="asterisk">*</span></label>
-                        <div class="col-sm-6">
-                            <input type="text" name='mobile' placeholder="" value="{{old('mobile')}}" class="form-control" required />
-                        </div>
-                    </div>
+        </div><!-- row -->
 
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">@lang('site.phone')</label>
-                        <div class="col-sm-6">
-                            <input type="text" name='phone' placeholder="" value="{{old('phone')}}" class="form-control"  />
-                        </div>
-                    </div>
+    </div><!-- contentpanel -->
 
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">@lang('site.address')</label>
-                        <div class="col-sm-6">
-                        <textarea name='address' placeholder="" class="form-control" >{!!old('address')!!}</textarea>
-                        </div>
-                    </div>
+    @endsection
 
-
-
-                </div>
-            </div><!-- panel-body -->
-            <div class="panel-footer">
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <button type="submit" class="btn btn-primary" id="store"><i class="fa fa-plus"></i>
-                            @lang('site.add')</button>&nbsp;
-                        <button class="btn btn-default">@lang('site.cancel')</button>
-                    </div>
-                </div>
-            </div><!-- panel-footer -->
-            {!! Form::close() !!} --}}
-
-            <div>body</div>
-
-        </div><!-- panel -->
-
-    </div><!-- panel-body -->
-
-</div><!-- panel -->
-
-</div><!-- contentpanel -->
-
-@endsection
-
-@push('script')
+    @push('script')
 
     <script>
-        jQuery(document).ready(function(){
-        "use strict";
-        jQuery("#client-create").validate({
-            highlight: function(element) {
-            jQuery(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-            },
-            success: function(element) {
-            jQuery(element).closest('.form-group').removeClass('has-error');
-            }
+        $(document).ready(function(){
+            $('.add-product-btn').on('click',function(e) {
+                e.preventDefault();
+                $(this).removeClass('btn-success').addClass('btn-default disabled');
+                let name = $(this).data('name');
+                let id = $(this).data('id');
+                let price = $(this).data('price');
+
+                let html =
+                `<tr>
+                    <td>${name}</td>
+                    <td><input type='number' name='quanities[]' data-price=${price} value='1' min='1' class='form-control input-sm product-quentity'></td>
+                    <td class='product-price'>${price}</td>
+                    <td><button class='btn btn-danger btn-sm remove-product-btn' data-id=${id}><i class='glyphicon glyphicon-trash'></i></button></td>
+                </tr>`
+
+                $('.order-list').append(html);
+
+                //to calculate total price
+                calculateTotal();
+
+            })
+
+            $('body').on('click','.disabled',function(e) {    //I belive not nesssary
+                e.preventDefault();
+            })
+
+            $('body').on('click','.remove-product-btn',function (e) {
+                    e.preventDefault();
+
+                let id = $(this).data('id');
+
+                $(this).closest('tr').remove();
+                $('#product-' + id).removeClass('btn-default disabled').addClass('btn-success');
+
+                //to calculate total price
+                calculateTotal();
+
+            }) //end of remove-product-btn
+
+            $('body').on(' change','.product-quentity', function () {
+
+                let quantity = $(this).val();
+                let unitPrice = $(this).data('price');
+                $(this).closest('tr').find('.product-price').html(quantity * unitPrice);
+                calculateTotal();
+
+            })
+
         });
-        });
 
+        function calculateTotal() {
+            let price =0;
+            $('.order-list .product-price').each(function (index){
+                price += parseInt($(this).html());
 
-// jQuery('#image').change(function(){
-
-//   if (this.files && this.files[0]) {
-//     var reader = new FileReader();
-
-//     reader.onload = function(e) {
-//         jQuery('#image-preview').attr('src', e.target.result);
-//     }
-
-//     reader.readAsDataURL(this.files[0]);
-//   }
-// });
-
-
+            });
+            $('.total-price').html(price)
+        }
 
 
     </script>
-@endpush
+    @endpush

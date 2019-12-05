@@ -36,7 +36,7 @@ class ProductRequest extends FormRequest
                 $rules = [];
                 foreach (config('translatable.locales') as $locale) {
                     $rules += [$locale.'.name' =>'required|min:3|unique:product_translations,name',
-                               $locale.'.description' =>'required|min:5' ];
+                             'category_id'=>'required'];
                     };
                     $rules += ['purchase_price'=>'required|not_in:0',     //
                        // 'sale_price' =>'required'
@@ -54,7 +54,7 @@ class ProductRequest extends FormRequest
                    $rules = [];
                    foreach (config('translatable.locales') as $locale) {
                        $rules += [$locale.'.name' =>'required|min:3|unique:product_translations,name,'.$collection['id'].',product_id'];
-                       $rules += [$locale.'.description'=>'required|min:5'];
+                       $rules += ['category_id'=>'required'];
                        };
                        $rules += ['purchase_price'=>'required|not_in:0',     //
                        // 'sale_price' =>'required'

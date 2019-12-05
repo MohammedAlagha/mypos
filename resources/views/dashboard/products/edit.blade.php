@@ -55,8 +55,7 @@
                     </div>
 
                     <div class="form-group">
-                            <label class="col-sm-3 control-label">@lang('site.'.$locale.'.decription')<span
-                                    class="asterisk">*</span></label>
+                            <label class="col-sm-3 control-label">@lang('site.'.$locale.'.decription')</label>
                             <div class="col-sm-9">
                             <textarea name='{{$locale}}[description]' placeholder=""  class="form-control ckeditor" required >{{$product->translate($locale)->description}}</textarea>
                             </div>

@@ -37,7 +37,7 @@
                         <select  name='category_id' placeholder=""  class="form-control" >
                             <option value="">@lang('site.category_select')</option>
                             @foreach ($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                <option value="{{$category->id}}" @if(old($category->id) == $category->id) {{'selected'}} @endif >{{$category->name}}</option>
                             @endforeach
                         </select>
                         </div>
@@ -54,8 +54,7 @@
                     </div>
 
                     <div class="form-group">
-                            <label class="col-sm-3 control-label">@lang('site.'.$locale.'.decription')<span
-                                    class="asterisk">*</span></label>
+                            <label class="col-sm-3 control-label">@lang('site.'.$locale.'.decription')</label>
                             <div class="col-sm-9">
                             <textarea name='{{$locale}}[description]' placeholder=""  class="form-control ckeditor" required >{!!old($locale.'.description')!!}</textarea>
                             </div>
