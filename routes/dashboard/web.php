@@ -12,7 +12,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
         Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function () {
 
-            Route::get('/index', 'DashboardController@index')->name('index');
+            Route::get('/index', 'WelcomeController@index')->name('welcome');
 
             // users routes
             Route::resource('users', 'UserController')->except(['show']);

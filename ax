@@ -1,0 +1,101 @@
+[33mcommit 8e7bcc1a23a8d7cc1d59c56eddb94ac63fa563fb[m[33m ([m[1;36mHEAD -> [m[1;32mold-state[m[33m)[m
+Author: = <algha2013@gmail.com>
+Date:   Thu Dec 5 07:49:46 2019 +0200
+
+    making seconed step in orders
+
+[33mcommit 37e64ba11cecc5cb6c69fbaac1cd0e239289b4ec[m
+Author: = <algha2013@gmail.com>
+Date:   Wed Dec 4 00:39:20 2019 +0200
+
+    the first stage in orders
+
+[33mcommit b48336b7acc4b543e7b578b8142867b94c7df801[m
+Author: = <algha2013@gmail.com>
+Date:   Tue Dec 3 22:38:41 2019 +0200
+
+    making clients
+
+[33mcommit 7ec82f495f32e0d160b02791b3bfad37979e8744[m
+Author: = <algha2013@gmail.com>
+Date:   Mon Dec 2 23:57:19 2019 +0200
+
+    making client model and controller
+
+[33mcommit 6ed68cfb3dc95e57ee1a9c7ce6f649501493c4e2[m
+Author: = <algha2013@gmail.com>
+Date:   Mon Dec 2 23:15:02 2019 +0200
+
+    front edits
+
+[33mcommit 028aff37150be5d4bece06f44be937994c1538e9[m
+Author: = <algha2013@gmail.com>
+Date:   Mon Dec 2 22:05:45 2019 +0200
+
+    finalizing products
+
+[33mcommit ba57696bda3556118b9adb3c36edf275d9a73b14[m
+Author: = <algha2013@gmail.com>
+Date:   Sun Dec 1 22:43:02 2019 +0200
+
+    making validation for multi language category and finalizing categories
+
+[33mcommit 9f58162bf1a7ee35d9b005429ee9235df70a5b34[m
+Author: = <algha2013@gmail.com>
+Date:   Sun Dec 1 21:06:58 2019 +0200
+
+    making multi languages category
+
+[33mcommit 343cbff5b7dc6d849ec818fb95672f900773fadf[m
+Author: = <algha2013@gmail.com>
+Date:   Sat Nov 30 22:23:46 2019 +0200
+
+    making categories
+
+[33mcommit cf577e99317fe4a36d77bc925ced51c54bc99279[m
+Author: = <algha2013@gmail.com>
+Date:   Sat Nov 30 16:19:24 2019 +0200
+
+    structuring login page in dashboard
+
+[33mcommit 22d1d8e969a36433cb820b83cd3a983bbb05f719[m
+Author: = <algha2013@gmail.com>
+Date:   Sat Nov 30 05:37:51 2019 +0200
+
+    making image uploading in create and edit form
+
+[33mcommit 3f17a48493ac3edaf6a971f7ff689c1f99782ef2[m
+Author: = <algha2013@gmail.com>
+Date:   Fri Nov 29 12:18:47 2019 +0200
+
+    before image
+
+[33mcommit 07adb1fc73362f3781375afb0052837e4719493f[m
+Author: = <algha2013@gmail.com>
+Date:   Thu Nov 28 21:30:32 2019 +0200
+
+    making delete user
+
+[33mcommit 039106fcb563d3033a9ad91695d6a8f05224698d[m
+Author: = <algha2013@gmail.com>
+Date:   Thu Nov 28 18:55:33 2019 +0200
+
+    making edit form
+
+[33mcommit 3dc336cbcfb7980be18d3c0a9e3beb0f9de4d731[m
+Author: = <algha2013@gmail.com>
+Date:   Thu Nov 28 02:39:26 2019 +0200
+
+    seconed commit
+
+[33mcommit 70328b7b5c97f8adff69097505f89185bf35853b[m
+Author: = <algha2013@gmail.com>
+Date:   Tue Nov 26 14:51:57 2019 +0200
+
+    making create user form
+
+[33mcommit 8983ec4b5615a19bc12c2704790a3cf3f30a0a66[m
+Author: = <algha2013@gmail.com>
+Date:   Mon Nov 25 23:54:53 2019 +0200
+
+    initial commit

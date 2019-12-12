@@ -35,7 +35,7 @@
 
           <h5 class="sidebartitle">Navigation</h5>
           <ul class="nav nav-pills nav-stacked nav-bracket">
-          <li class="active"><a href=" {{route('dashboard.index')}} "><i class="fa fa-home"></i> <span>@lang('site.dashboard')</span></a></li>
+          <li class="active"><a href=" {{route('dashboard.welcome')}} "><i class="fa fa-home"></i> <span>@lang('site.dashboard')</span></a></li>
 
           @if (auth()->user()->hasPermission('read_categories'))
           <li><a href="{{route('dashboard.categories.index')}}"><i class="glyphicon  glyphicon-th-large"></i> <span>@lang('site.categories')</span></a></li>

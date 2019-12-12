@@ -57,7 +57,7 @@
                     <div class="form-group">
                             <label class="col-sm-3 control-label">@lang('site.'.$locale.'.decription')</label>
                             <div class="col-sm-9">
-                            <textarea name='{{$locale}}[description]' placeholder=""  class="form-control ckeditor" required >{{$product->translate($locale)->description}}</textarea>
+                            <textarea name='{{$locale}}[description]' placeholder=""  class="form-control ckeditor" >{{$product->translate($locale)->description}}</textarea>
                             </div>
                         </div>
 
@@ -83,7 +83,7 @@
                         <label class="col-sm-3 control-label">@lang('site.purchase_price')<span
                                 class="asterisk">*</span></label>
                         <div class="col-sm-6">
-                            <input type="number" name='purchase_price' placeholder="" value="{{$product->purchase_price}}" class="form-control" required />
+                            <input type="number" name='purchase_price' step="0.01" placeholder="" value="{{$product->purchase_price}}" class="form-control" required />
                         </div>
                     </div>
 
@@ -91,7 +91,7 @@
                         <label class="col-sm-3 control-label">@lang('site.sale_price')<span
                                 class="asterisk">*</span></label>
                         <div class="col-sm-6">
-                            <input type="number" name='sale_price' placeholder="" value="{{$product->sale_price}}" class="form-control" required />
+                            <input type="number" name='sale_price' step="0.01" placeholder="" value="{{$product->sale_price}}" class="form-control" required />
                         </div>
                     </div>
 

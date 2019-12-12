@@ -117,7 +117,7 @@
                 $(this).removeClass('btn-success').addClass('btn-default disabled');
                 let name = $(this).data('name');
                 let id = $(this).data('id');
-                let price = $(this).data('price');
+                let price = $.number($(this).data('price'),2);
 
                 let html =
                 `<tr>
@@ -151,11 +151,11 @@
 
             }) //end of remove-product-btn
 
-            $('body').on(' change','.product-quentity', function () {
+            $('body').on('change','.product-quentity', function () {
 
                 let quantity = $(this).val();
                 let unitPrice = $(this).data('price');
-                $(this).closest('tr').find('.product-price').html(quantity * unitPrice);
+                $(this).closest('tr').find('.product-price').html($.number(quantity * unitPrice ,2));
                 calculateTotal();
 
             })
@@ -165,10 +165,10 @@
         function calculateTotal() {
             let price =0;
             $('.order-list .product-price').each(function (index){
-                price += parseInt($(this).html());
+                price += parseFloat($(this).html().replace(/,/g,''));
 
             });
-            $('.total-price').html(price)
+            $('.total-price').html($.number(price ,2))
         }
 
 

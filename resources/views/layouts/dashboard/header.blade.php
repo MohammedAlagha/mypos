@@ -9,11 +9,11 @@
 
   <title>@yield('title')</title>
 
-  <link href="{{asset('dashboard/css/style.default.css')}}" rel="stylesheet">
+  <link href="{{asset('dashboard_files/css/style.default.css')}}" rel="stylesheet">
   @stack('head')
     @if (app()->getLocale() == 'ar')
 
-         <link href="{{asset('dashboard/css/style.default-rtl.css')}}" rel="stylesheet">
+         <link href="{{asset('dashboard_files/css/style.default-rtl.css')}}" rel="stylesheet">
          <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
 
          <style>
