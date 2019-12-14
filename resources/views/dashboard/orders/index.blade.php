@@ -25,7 +25,7 @@
 @section('content')
 
 <div class="pageheader">
-    <h2><i class="glyphicon glyphicon-user"></i> @lang('site.orders') <span>@lang('site.order_create')</span></h2>
+    <h2><i class="glyphicon glyphicon-user"></i> @lang('site.orders') <span>@lang('site.orders_show')</span></h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li><a href="{{route('dashboard.clients.create')}}">@lang('site.order_create')</a></li>
@@ -93,8 +93,6 @@
 
     <script>
      jQuery(document).ready(function() {
-
-
             "use strict";
 
             var table = jQuery('#table1').DataTable({     //For making the table and I give it name to call it
@@ -136,13 +134,63 @@
                 url:url,
                 method:method,
                 success:function(data){
-                    
+
                     $('.loader').css('display','none')  //for hiding loader
                     $('#products-show').empty();
                     $('#products-show').append(data);
                 }
             })
          })
+
+         $(document).on('click','.delete' ,function (e) {
+            e.preventDefault();
+            var url = $(this).data('url');
+            Swal.fire({
+                title: '{{__('site.are_you_sure')}}',
+                text: "",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '{{__('site.yes')}}',
+                cancelButtonText: '{{__('site.cancel')}}',
+                preConfirm: function () {
+                    return new Promise(function (resolve, reject) {
+                        $.ajax({
+                            url: url,
+                            type: 'Delete',
+                            data:{_token: '{{ csrf_token() }}'},
+                            dataType: 'json',
+                            success: function (response) {
+                                if(response.status == true){
+                                    Swal.fire({
+                                            text: response.message,
+                                            timer: 2000,
+                                            icon:"success",
+                                            showCancelButton: false,
+                                            showConfirmButton: false
+                                        });
+                                        jQuery('#table1').DataTable().ajax.reload(null, false);  //I need to pass parameters for keeping current page like
+                                }else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: response.message,
+
+                                    })
+                                }
+
+                            },
+                            error: function (response) {
+                                console.log(response)
+
+                            }
+                        });
+                    });
+                },
+                allowOutsideClick: false
+            }).then(function () {});
+        });
+
     </script>
 
     @include('partials._session')

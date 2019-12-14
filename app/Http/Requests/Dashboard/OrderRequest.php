@@ -31,15 +31,15 @@ class OrderRequest extends FormRequest
 
             case "POST":
                 return [
-                    'products' => 'required|min:4',
+                    'products' => 'required|array',
                 ];
                 break;
 
             case "PUT":
             case "PATCH": {
-                    $collection = collect($this->request)->toArray();
+                    // $collection = collect($this->request)->toArray();
                     return [
-                      
+
                     ];
                 }
                 break;

@@ -53,7 +53,7 @@
                                         <td>{{number_format($product->sale_price, 2)}}</td>
                                         <td>
                                             <a href="" id="product-{{$product->id}}" data-name="{{$product->name}}"
-                                                data-id="{{$product->id}}" data-price="{{$product->sale_price}}"
+                                                data-id="{{$product->id}}" data-price="{{$product->sale_price}}" data-stock="{{$product->stock}}"
                                                 class="btn btn-success btn-sm add-product-btn">
                                                 <i class="fa fa-plus"></i>
 
@@ -81,6 +81,7 @@
                     <div class="panel-footer">
                         {!! Form::open(['route'=>['dashboard.clients.orders.store',$client->id],'class'=>'form-horizonta','id'=>'order-create','method'=>"post"]) !!}
                             <table class="table table-hover mb30">
+                                    @include('partials._errors')
                                     <thead>
                                       <tr>
                                         <th>@lang('site.product')</th>
@@ -118,6 +119,7 @@
                 e.preventDefault();
                 $(this).removeClass('btn-success').addClass('btn-default disabled');
                 let name = $(this).data('name');
+                let stock = $(this).data('stock');
                 let id = $(this).data('id');
                 let price = $.number($(this).data('price'),2);
                 // <input type='hidden' name='products[]' value=${id}></input>
@@ -125,7 +127,7 @@
                 let html =
                 `<tr>
                     <td>${name}</td>
-                    <td><input type='number' name='products[${id}][quantity]' data-price=${price} value='1' min='1' class='form-control input-sm product-quantity'></td>
+                    <td><input type='number' name='products[${id}][quantity]' data-price=${price} value='1' min='1' max='${stock}' class='form-control input-sm product-quantity'></td>
                     <td class='product-price'>${price}</td>
                     <td><button class='btn btn-danger btn-sm remove-product-btn' data-id=${id}><i class='glyphicon glyphicon-trash'></i></button></td>
                 </tr>`

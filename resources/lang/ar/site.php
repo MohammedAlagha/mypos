@@ -15,10 +15,10 @@ return [
         'products'                 =>  'المنتجات',
         'clients'                  =>  'العملاء',
         'users'                    =>  'المشرفين',
-        'orders'                   =>  'الطلبات',
+        'orders'                   =>  'الطلبيات',
 
         'category'                 =>  'الفئة',
-        'product'                 =>   'المنتج',
+        'product'                  =>   'المنتج',
 
         'first_name'               =>  'الاسم الأول',
         'last_name'                =>  'الاسم الأخير',
@@ -26,8 +26,6 @@ return [
         'image'                    =>  'صورة',
         'password'                 =>  'كلمة المرور',
         'password_confirmation'    =>  'تأكيد كلمة المرور',
-
-
 
         'category_create'          =>  'انشاء فئة',
         'category_edit'            =>  'تعديل فئة',
@@ -44,6 +42,7 @@ return [
 
         'order_create'             =>  'اضافة طلبية',
         'order_edit'               =>  'تعديل طلبية',
+        'orders_show'              =>  'عرض الطلبيات',
 
         'user_create'              =>  'انشاء مشرف',
         'user_edit'                =>  'تعديل مشرف',

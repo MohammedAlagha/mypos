@@ -1,7 +1,7 @@
         @if ($products->count() > 0)
         <table class="table table-hover">
             <tr>
-                <th>@lang('site.name')</th>
+                <th>@lang('site.product')</th>
                 <th>@lang('site.quantity')</th>
                 <th>@lang('site.price')</th>
             </tr>

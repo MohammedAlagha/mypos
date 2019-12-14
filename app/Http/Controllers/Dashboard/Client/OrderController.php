@@ -25,7 +25,7 @@ class OrderController extends Controller
     }//end of create
 
 
-    public function store(Request $request, Client $client)
+    public function store(OrderRequest $request, Client $client)
     {
 
         $order = $client->orders()->create();
