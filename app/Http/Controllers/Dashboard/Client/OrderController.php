@@ -6,6 +6,8 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\Client;
+use App\Http\Requests\Dashboard\OrderRequest;
+use App\Product;
 use Illuminate\Http\Request;
 class OrderController extends Controller
 {
@@ -25,6 +27,30 @@ class OrderController extends Controller
 
     public function store(Request $request, Client $client)
     {
+
+        $order = $client->orders()->create();
+        $order->products()->attach($request->products);
+
+        $total_price = 0;
+
+        foreach ($request->products as $id => $quentity) {
+
+            $product = Product::findOrFail($id);
+
+            $total_price +=$product->sale_price * $quentity['quentity'];
+
+            $product->update([
+                'stock' => $product->stock - $quentity['quentity']
+            ]);
+
+        }//end of foreach
+
+        $order->update([
+            'total_price'=>$total_price
+        ]);
+
+        session()->flash('success',__('site.added_successfully'));
+        return redirect()->route('dashboard.orders.index');
 
     }//end of store
 

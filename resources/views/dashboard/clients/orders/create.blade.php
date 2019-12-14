@@ -50,7 +50,7 @@
                                     <tr>
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->stock}}</td>
-                                        <td>{{$product->sale_price}}</td>
+                                        <td>{{number_format($product->sale_price, 2)}}</td>
                                         <td>
                                             <a href="" id="product-{{$product->id}}" data-name="{{$product->name}}"
                                                 data-id="{{$product->id}}" data-price="{{$product->sale_price}}"
@@ -79,6 +79,7 @@
                             <h5 class="subtitle">@lang('site.orders')</h5>
                         </div>
                     <div class="panel-footer">
+                        {!! Form::open(['route'=>['dashboard.clients.orders.store',$client->id],'class'=>'form-horizonta','id'=>'order-create','method'=>"post"]) !!}
                             <table class="table table-hover mb30">
                                     <thead>
                                       <tr>
@@ -97,7 +98,8 @@
                                   </table>
                                   <div>@lang('site.total') :<span class="total-price"></span></div>
                                   <br>
-                                  <button class="btn btn-primary">@lang('site.order_create')</button>
+                                  <button type="submit" class="btn btn-primary" id="create-order-form-btn">@lang('site.order_create')</button>
+                                  {!! Form::close() !!}
                     </div><!-- panel-footer -->
                 </div><!-- panel -->
             </div>
@@ -118,11 +120,12 @@
                 let name = $(this).data('name');
                 let id = $(this).data('id');
                 let price = $.number($(this).data('price'),2);
+                // <input type='hidden' name='products[]' value=${id}></input>
 
                 let html =
                 `<tr>
                     <td>${name}</td>
-                    <td><input type='number' name='quanities[]' data-price=${price} value='1' min='1' class='form-control input-sm product-quentity'></td>
+                    <td><input type='number' name='products[${id}][quentity]' data-price=${price} value='1' min='1' class='form-control input-sm product-quentity'></td>
                     <td class='product-price'>${price}</td>
                     <td><button class='btn btn-danger btn-sm remove-product-btn' data-id=${id}><i class='glyphicon glyphicon-trash'></i></button></td>
                 </tr>`
@@ -151,10 +154,11 @@
 
             }) //end of remove-product-btn
 
-            $('body').on('change','.product-quentity', function () {
+            $('body').on('keyup change','.product-quentity', function () {
 
-                let quantity = $(this).val();
-                let unitPrice = $(this).data('price');
+                let quantity = $(this).val(); //2
+                let unitPrice = parseFloat($(this).data('price').replace(/,/g,'')); //150
+
                 $(this).closest('tr').find('.product-price').html($.number(quantity * unitPrice ,2));
                 calculateTotal();
 
@@ -169,7 +173,15 @@
 
             });
             $('.total-price').html($.number(price ,2))
+
+            if (price > 0) {
+            $('#create-order-form-btn').removeClass('disabled')
+
+            }else{
+                $('#create-order-form-btn').addClass('disabled')
+            }
         }
+
 
 
     </script>

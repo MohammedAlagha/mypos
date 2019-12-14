@@ -1,7 +1,7 @@
 @extends('layouts.dashboard.app')
 
 @push('head')
-<link href="{{asset('dashboard/css/jquery.datatables.css')}}" rel="stylesheet">
+<link href="{{asset('dashboard_files/css/jquery.datatables.css')}}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -65,9 +65,9 @@
 @endsection
 
 @push('script')
-<script src="{{asset('dashboard/js/jquery.datatables.min.js')}}"></script>
+<script src="{{asset('dashboard_files/js/jquery.datatables.min.js')}}"></script>
 
-<script src="{{asset('dashboard/js/select2.min.js')}}"></script>
+<script src="{{asset('dashboard_files/js/select2.min.js')}}"></script>
 
 <script>
     jQuery(document).ready(function() {

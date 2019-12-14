@@ -36,6 +36,7 @@ return [
         'product_create'           =>  'اضافة منتج',
         'product_edit'             =>  'تعديل منتج',
         'product_show'             =>  'عرض منتج',
+        'products_show'            =>  'عرض المنتجات',
 
         'client_create'            =>  'اضافة عميل',
         'client_edit'              =>  'تعديل عميل',
@@ -81,6 +82,7 @@ return [
         'quantity'                 =>  'الكمية',
         'total'                    =>  'المجموع',
 
+        'client_name'              =>  'اسم العميل',
         'phone'                    =>  'الهاتف',
         'mobile'                   =>  'الجوال',
         'address'                  =>  'العنوان',

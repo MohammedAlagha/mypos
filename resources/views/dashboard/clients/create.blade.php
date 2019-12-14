@@ -26,7 +26,7 @@
         </div>
         <div class="panel-body panel-body-nopadding">
             @include('partials._errors')
-            {!! Form::open(['route'=>'dashboard.clients.store' ,'id'=>"client-create",'class'=>'form-horizontal','method'=>"post" ]) !!}
+            {!! Form::open(['route'=>'dashboard.clients.store' ,'id'=>"client-create",'class'=>'form-horizontal','method'=>"post"]) !!}
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="form-group">

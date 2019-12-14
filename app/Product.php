@@ -43,4 +43,9 @@ class Product extends Model implements TranslatableContract
 
          return  number_format((float)$profit_percent, 2, '.', '');   //Show a number to two decimal places
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class,'product_order');
+    }
 }
