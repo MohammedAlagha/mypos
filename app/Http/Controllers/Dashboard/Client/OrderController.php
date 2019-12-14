@@ -33,14 +33,14 @@ class OrderController extends Controller
 
         $total_price = 0;
 
-        foreach ($request->products as $id => $quentity) {
+        foreach ($request->products as $id => $quantity) {
 
             $product = Product::findOrFail($id);
 
-            $total_price +=$product->sale_price * $quentity['quentity'];
+            $total_price +=$product->sale_price * $quantity['quantity'];
 
             $product->update([
-                'stock' => $product->stock - $quentity['quentity']
+                'stock' => $product->stock - $quantity['quantity']
             ]);
 
         }//end of foreach

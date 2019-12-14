@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Dashboard;
+use DataTables;
 
 use App\Http\Controllers\Controller;
+use App\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -12,5 +14,62 @@ class OrderController extends Controller
         return view('dashboard.orders.index');
 
     }//end of index
-    
+
+    public function data()
+    {
+
+        $orders = Order::all();
+        //  dd($clients->find(5)->category_id);
+        return DataTables::of($orders)
+            ->addColumn('action', function ($order) {
+                if (auth()->user()->can(['update_orders', 'delete_orders'], true)) {
+                    return "<a class='btn btn-xs btn-success order-products'  data-url='" . route('dashboard.orders.show', $order->id) . "' data-method ='get'><i class='glyphicon glyphicon-eye-open'></i></a>
+                        <a class='btn btn-xs btn-primary edit' data-url='" . route('dashboard.orders.edit', $order->id) . "'><i class='glyphicon glyphicon-edit'></i></a>
+                         <a class='btn btn-xs btn-danger delete'  data-id= '$order->id' data-url='" . route('dashboard.clients.destroy', $order->id) . "'><i class='glyphicon glyphicon-trash'></i></a>";
+                }
+                //  elseif (auth()->user()->can('update_orders')) {
+                //     return "<a class='btn btn-xs btn-success order-products'  data-url='" . route('dashboard.orders.show', $order->id) . "' data-method ='get'><i class='glyphicon  glyphicon-eye-open'></i></a>
+                //         <a class='btn btn-xs btn-primary edit' data-url='" . route('dashboard.orders.edit', $order->id) . "' data-value = '" . $order->name . "'><i class='glyphicon glyphicon-edit'></i></a>
+                //         <a class='btn btn-xs btn-danger delete disabled'><i class='glyphicon glyphicon-trash'></i></a>";
+                // } elseif (auth()->user()->can('delete_orders')) {
+                //     return "<a class='btn btn-xs btn-success order-products'  data-url='" . route('dashboard.orders.show', $order->id) . "' data-method ='get'><i class='glyphicon  glyphicon-eye-open'></i></a>
+                //          <a class='btn btn-xs btn-primary edit disabled'><i class='glyphicon glyphicon-edit'></i></a>
+                //          <a class='btn btn-xs btn-danger delete '  data-id= '$order->id' data-url='" . route('dashboard.orders.destroy', $order->id) . "'><i class='glyphicon glyphicon-trash'></i></a>";
+                // } else {
+                //     return "<a class='btn btn-xs btn-success order-products'  data-url='" . route('dashboard.orders.show', $order->id) . "' data-method ='get'><i class='glyphicon  glyphicon-eye-open'></i></a>
+                //         <a class='btn btn-xs btn-primary edit disabled'><i class='glyphicon glyphicon-edit'></i></a>
+                //          <a class='btn btn-xs btn-danger delete disabled' ><i class='glyphicon glyphicon-trash'></i></a>";
+                // }
+            })
+            ->addColumn('client_name',function($order)
+            {
+                return $order->client->name;
+            })->editColumn('created_at',function ($order)
+            {
+                return $order->created_at->toDateTimeString();
+            })
+            ->make(true);
+    }
+
+    public function show(Order $order)
+    {
+        $products = $order->products;
+         return view('dashboard.orders._show',compact('products','order'));
+
+    }//end of show
+
+    public function edit(Order $order)
+    {
+        $products = $order->products;
+        // return view('dashboard')
+
+    }//end of edit
+
+    public function destroy(Order $order)
+    {
+        $products = $order->products;
+        // return view('dashboard')
+
+    }//end of destroy
+
 }

@@ -33,6 +33,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
             //orders routes
             Route::resource('orders', 'OrderController');
+            Route::get('order-data', 'OrderController@data')->name('orders.data');
 
 
         });//end of dashboard Routes

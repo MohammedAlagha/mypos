@@ -125,7 +125,7 @@
                 let html =
                 `<tr>
                     <td>${name}</td>
-                    <td><input type='number' name='products[${id}][quentity]' data-price=${price} value='1' min='1' class='form-control input-sm product-quentity'></td>
+                    <td><input type='number' name='products[${id}][quantity]' data-price=${price} value='1' min='1' class='form-control input-sm product-quantity'></td>
                     <td class='product-price'>${price}</td>
                     <td><button class='btn btn-danger btn-sm remove-product-btn' data-id=${id}><i class='glyphicon glyphicon-trash'></i></button></td>
                 </tr>`
@@ -154,7 +154,7 @@
 
             }) //end of remove-product-btn
 
-            $('body').on('keyup change','.product-quentity', function () {
+            $('body').on('keyup change','.product-quantity', function () {
 
                 let quantity = $(this).val(); //2
                 let unitPrice = parseFloat($(this).data('price').replace(/,/g,'')); //150

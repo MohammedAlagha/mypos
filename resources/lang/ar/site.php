@@ -59,6 +59,7 @@ return [
         'update'                   =>  'تحديث',
         'delete'                   =>  'حذف',
         'cancel'                   =>  'الغاء',
+        'print'                    =>  'طباعة',
 
         'created_at'               =>  'أنشئ في',
         'updated_at'               =>  'اخر تعديل',

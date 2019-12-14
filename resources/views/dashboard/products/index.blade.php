@@ -106,8 +106,8 @@
 
             });
 
-            $(document).on('click','.delete' ,function (event) {
-            event.preventDefault();
+            $(document).on('click','.delete' ,function (e) {
+            e.preventDefault();
             var url = $(this).data('url');
             Swal.fire({
                 title: '{{__('site.are_you_sure')}}',
