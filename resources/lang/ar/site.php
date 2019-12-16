@@ -43,6 +43,7 @@ return [
         'order_create'             =>  'اضافة طلبية',
         'order_edit'               =>  'تعديل طلبية',
         'orders_show'              =>  'عرض الطلبيات',
+        'order_number'             =>  'رقم الطلبية',
 
         'user_create'              =>  'انشاء مشرف',
         'user_edit'                =>  'تعديل مشرف',

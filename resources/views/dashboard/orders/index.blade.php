@@ -89,6 +89,7 @@
 
     <script src="{{asset('dashboard_files/js/jquery.datatables.min.js')}}"></script>
     <script src="{{asset('dashboard_files/js/select2.min.js')}}"></script>
+    <script src="{{asset('dashboard_files/js/printThis.js')}}"></script>    {{--for print orders--}}
 
 
     <script>
@@ -121,7 +122,7 @@
 
          });
 
-
+        //list all order product
          $(document).on('click','.order-products',function(e) {
             e.preventDefault();
 
@@ -141,6 +142,20 @@
                 }
             })
          })
+
+         //print order product
+         $(document).on('click','#print-order',function(){
+             let client_name = $(this).data('client_name')
+             let order_number = $(this).data('order_number')
+            $('#for-printing').printThis({
+
+                header:`<br>
+                        <h5>{{__('site.client_name')}}: ${client_name}<h5/>
+                        <h5>{{__('site.order_number')}}:${order_number}<h5/>
+                        <br>`
+                        });
+         })
+
 
 
          $(document).on('click','.delete' ,function (e) {    //for delete button
