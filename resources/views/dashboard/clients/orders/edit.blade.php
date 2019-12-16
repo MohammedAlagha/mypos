@@ -1,106 +1,194 @@
 @extends('layouts.dashboard.app')
 
+@section('title',__('site.order_edit'))
+
+
 @section('content')
 
 <div class="pageheader">
-<h2><i class="glyphicon glyphicon-user"></i> @lang('site.clients') <span>@lang('site.client_edit') {{$client->name}}</span></h2>
+    <h2><i class="glyphicon glyphicon-user"></i> @lang('site.orders') <span>@lang('site.order_edit')</span></h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
-            <li><a href="{{route('dashboard.clients.edit',[$client->id])}}">@lang('site.client_edit') {{$client->name}}</a></li>
-            <li><a href="{{route('dashboard.clients.index')}}">@lang('site.clients')</a></li>
+            <li><a href="{{route('dashboard.clients.orders.edit',[$order->client_id ,$order->id])}}">@lang('site.order_edit')</a></li>
+            {{-- <li><a href="{{route('dashboard.clients.index')}}">@lang('site.clients')</a></li> --}}
             <li class="active">@lang('site.dashboard')</li>
         </ol>
     </div>
 </div>
 
-<div class="contentpanel">
+    <div class="contentpanel">
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="panel-btns">
-                <a href="" class="panel-close">&times;</a>
-                <a href="" class="minimize">&minus;</a>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel-heading">
+                    <h5 class="subtitle">@lang('site.categories')</h5>
+                </div>
+
+                <div class="panel-group" id="accordion">
+                    @foreach ($categories as $category)
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" class="collapsed" data-parent="#accordion"
+                                    href="#{{str_replace(' ','-',$category->translate(app()->getlocale())->name)}}">
+                                    {{$category->translate(app()->getlocale())->name}}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="{{str_replace(' ','-',$category->translate(app()->getlocale())->name)}}"
+                            class="panel-collapse collapse">
+                            <div class="panel-body">
+                                @if ($category->products->count() > 0)
+                                <table class="table table-hover">
+                                    <tr>
+                                        <th>@lang('site.name')</th>
+                                        <th>@lang('site.stock')</th>
+                                        <th>@lang('site.price')</th>
+                                        <th>@lang('site.add')</th>
+                                    </tr>
+                                    @foreach ($category->products as $product)
+                                    <tr>
+                                        <td>{{$product->name}}</td>
+                                        <td>{{$product->stock}}</td>
+                                        <td>{{number_format($product->sale_price, 2)}}</td>
+                                        <td>
+                                            <a href="" id="product-{{$product->id}}" data-name="{{$product->name}}"
+                                                data-id="{{$product->id}}" data-price="{{$product->sale_price}}" data-stock="{{$product->stock}}"
+                                                class=" btn {{in_array($product->id ,$order->products->pluck('id')->toArray())?'btn-default disabled':'btn-success'}} btn-sm add-product-btn ">
+                                                <i class="fa fa-plus"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </table>
+                                @else
+                                 @lang('site.no_records')
+                                @endif
+                             </div>
+                        </div>
+                    </div>
+                    @endforeach
+
+                </div>
             </div>
-            <h4 class="panel-title">@lang('site.client_edit')</h4>
 
-        </div>
-        <div class="panel-body panel-body-nopadding">
-            @include('partials._errors')
-            {!! Form::open(['route'=>['dashboard.clients.update',$client->id] ,'id'=>"client-edit",'class'=>'form-horizontal','method'=>"PATCH" ]) !!}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="form-group">
-                        <input type="hidden" name="id" value="{{$client->id}}">
-                        <label class="col-sm-3 control-label">@lang('site.name')<span
-                                class="asterisk">*</span></label>
-                        <div class="col-sm-6">
-                            <input type="text" name='name' placeholder="" value="{{$client->name}}" class="form-control" required />
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h5 class="subtitle">@lang('site.orders')</h5>
                         </div>
-                    </div>
+                    <div class="panel-footer">
+                        {!! Form::open(['route'=>['dashboard.clients.orders.update',$client->id,$order->id],'class'=>'form-horizonta','id'=>'order-edit','method'=>"PATCH"]) !!}
+                            <table class="table table-hover mb30">
+                                    @include('partials._errors')
+                                    <thead>
+                                      <tr>
+                                        <th>@lang('site.product')</th>
+                                        <th>@lang('site.quantity')</th>
+                                        <th>@lang('site.price')</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody class="order-list">
+                                      @foreach ($order->products as $product)
+                                      <tr>
+                                            <td>{{$product->name}}</td>
+                                            <td><input type='number' name='products[{{$product->id}}][quantity]' value='{{$product->pivot->quantity}}' min='1' max='{{$product->stock}}' data-price="{{number_format($product->sale_price,2)}}" class='form-control input-sm product-quantity'></td>
+                                            <td class='product-price' >{{number_format($product->sale_price * $product->pivot->quantity,2)}}</td>
+                                            <td><button class='btn btn-danger btn-sm remove-product-btn'  data-id={{$product->id}}><i class='glyphicon glyphicon-trash'></i></button></td>
+                                        </tr>
+                                      @endforeach
+                                    </tbody>
+                                  </table>
+                                    <div>@lang('site.total') :<span class="total-price">{{number_format($order->total_price,2)}}</span></div>
+                                  <br>
+                                  <button type="submit" class="btn btn-primary" id="edit-order-form-btn">@lang('site.order_edit')</button>
+                                  {!! Form::close() !!}
+                    </div><!-- panel-footer -->
+                </div><!-- panel -->
+            </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">@lang('site.mobile')<span
-                                class="asterisk">*</span></label>
-                        <div class="col-sm-6">
-                            <input type="text" name='mobile' placeholder="" value="{{$client->mobile}}" class="form-control" required />
-                        </div>
-                    </div>
+        </div><!-- row -->
 
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">@lang('site.phone')</label>
-                        <div class="col-sm-6">
-                            <input type="text" name='phone' placeholder="" value="{{$client->phone}}" class="form-control"  />
-                        </div>
-                    </div>
+    </div><!-- contentpanel -->
 
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">@lang('site.address')</label>
-                        <div class="col-sm-6">
-                        <textarea name='address' placeholder="" class="form-control" >{!!$client->address!!}</textarea>
-                        </div>
-                    </div>
+    @endsection
 
+    @push('script')
 
+    <script>
+        $(document).ready(function(){
+            $('.add-product-btn').on('click',function(e) {
+                e.preventDefault();
+                $(this).removeClass('btn-success').addClass('btn-default disabled');
+                let name = $(this).data('name');
+                let stock = $(this).data('stock');
+                let id = $(this).data('id');
+                let price = $.number($(this).data('price'),2);
+                // <input type='hidden' name='products[]' value=${id}></input>
 
-                </div>
-            </div><!-- panel-body -->
-            <div class="panel-footer">
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <button type="submit" class="btn btn-primary" id="store"><i class="fa fa-plus"></i>
-                            @lang('site.add')</button>&nbsp;
-                        <button class="btn btn-default">@lang('site.cancel')</button>
-                    </div>
-                </div>
-            </div><!-- panel-footer -->
-            {!! Form::close() !!}
+                let html =
+                `<tr>
+                    <td>${name}</td>
+                    <td><input type='number' name='products[${id}][quantity]' data-price=${price} value='1' min='1' max='${stock}' class='form-control input-sm product-quantity'></td>
+                    <td class='product-price'>${price}</td>
+                    <td><button class='btn btn-danger btn-sm remove-product-btn' data-id=${id}><i class='glyphicon glyphicon-trash'></i></button></td>
+                </tr>`
 
-        </div><!-- panel -->
+                $('.order-list').append(html);
 
-    </div><!-- panel-body -->
+                //to calculate total price
+                calculateTotal();
 
-</div><!-- panel -->
+            })
 
-</div><!-- contentpanel -->
+            $('body').on('click','.disabled',function(e) {
+                e.preventDefault();
+            })
 
-@endsection
+            $('body').on('click','.remove-product-btn',function (e) {
+                    e.preventDefault();
 
-@push('script')
+                let id = $(this).data('id');
 
+                $(this).closest('tr').remove();
+                $('#product-' + id).removeClass('btn-default disabled').addClass('btn-success');
 
-<script>
+                //to calculate total price
+                calculateTotal();
 
-    jQuery(document).ready(function(){
-        "use strict";
-        jQuery("#client-edit").validate({
-            highlight: function(element) {
-            jQuery(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-            },
-            success: function(element) {
-            jQuery(element).closest('.form-group').removeClass('has-error');
-            }
+            }) //end of remove-product-btn
+
+            $('body').on('keyup change','.product-quantity', function () {
+                console.log('ss')
+                console.log($(this).data('price'))
+                let quantity = $(this).val(); //2
+
+                let unitPrice = parseFloat($(this).data('price').replace(/,/g,'')); //150
+
+                $(this).closest('tr').find('.product-price').html($.number(quantity * unitPrice ,2));
+                calculateTotal();
+
+            })
+
         });
-    });
 
-</script>
-@endpush
+        function calculateTotal() {
+            let price =0;
+            $('.order-list .product-price').each(function (index){
+                price += parseFloat($(this).html().replace(/,/g,''));
+
+            });
+            $('.total-price').html($.number(price ,2))
+
+            if (price > 0) {
+            $('#edit-order-form-btn').removeClass('disabled')
+
+            }else{
+                $('#edit-order-form-btn').addClass('disabled')
+            }
+        }
+
+
+
+    </script>
+    @endpush

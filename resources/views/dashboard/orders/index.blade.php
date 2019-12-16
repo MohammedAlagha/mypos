@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.app')
 
-@section('title',__('site.order_create'))
+@section('title',__('site.orders'))
 
 @push('head')
 <link href="{{asset('dashboard_files/css/jquery.datatables.css')}}" rel="stylesheet">
@@ -142,7 +142,8 @@
             })
          })
 
-         $(document).on('click','.delete' ,function (e) {
+
+         $(document).on('click','.delete' ,function (e) {    //for delete button
             e.preventDefault();
             var url = $(this).data('url');
             Swal.fire({

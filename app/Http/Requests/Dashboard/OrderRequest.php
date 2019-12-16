@@ -37,9 +37,8 @@ class OrderRequest extends FormRequest
 
             case "PUT":
             case "PATCH": {
-                    // $collection = collect($this->request)->toArray();
                     return [
-
+                        'products' => 'required|array',
                     ];
                 }
                 break;

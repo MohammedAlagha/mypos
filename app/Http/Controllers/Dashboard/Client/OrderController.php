@@ -28,7 +28,38 @@ class OrderController extends Controller
     public function store(OrderRequest $request, Client $client)
     {
 
-        $order = $client->orders()->create();
+        $this->attach_odrer($request,$client);
+
+        session()->flash('success',__('site.added_successfully'));
+        return redirect()->route('dashboard.orders.index');
+
+    }//end of store
+
+
+    public function edit(Client $client, Order $order )
+    {
+
+        $categories = Category::with('products')->get();
+        return view("dashboard.clients.orders.edit",compact('categories','client','order'));
+
+    }//end of edit
+
+
+    public function update(OrderRequest $request,  Client $client ,Order $order )
+    {
+        $this->detach_order($order);
+
+        $this->attach_odrer($request,$client);
+
+        session()->flash('success',__('site.edit_successfully'));
+
+        return redirect()->route('dashboard.orders.index');
+    }//end of update
+
+
+    public function attach_odrer(OrderRequest $request, Client $client)
+    {
+        $order = $client->orders()->create([]);
         $order->products()->attach($request->products);
 
         $total_price = 0;
@@ -48,34 +79,16 @@ class OrderController extends Controller
         $order->update([
             'total_price'=>$total_price
         ]);
+    }
 
-        session()->flash('success',__('site.added_successfully'));
-        return redirect()->route('dashboard.orders.index');
-
-    }//end of store
-
-
-    public function show(Order $order , Client $client)
+    private function detach_order($order)
     {
+        foreach ($order->products as $product) {
 
-    }//end of show
-
-
-    public function edit(Order $order , Client $client)
-    {
-
-    }//end of edit
-
-
-
-    public function update(Request $request, Order $order , Client $client)
-    {
-
-    }//end of update
-
-
-    public function destroy(Order $order , Client $client)
-    {
-
-    }//end of destroy
+            $product->update([
+                'stock'=>$product->stock + $product->pivot->quantity
+            ]);
+        }
+        $order->delete();
+    }
 }

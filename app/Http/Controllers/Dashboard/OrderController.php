@@ -24,12 +24,12 @@ class OrderController extends Controller
             ->addColumn('action', function ($order) {
                 if (auth()->user()->can(['update_orders', 'delete_orders'], true)) {
                     return "<a class='btn btn-xs btn-success order-products'  data-url='" . route('dashboard.orders.show', $order->id) . "' data-method ='get'><i class='glyphicon glyphicon-eye-open'></i></a>
-                        <a class='btn btn-xs btn-primary edit' data-url='" . route('dashboard.orders.edit', $order->id) . "'><i class='glyphicon glyphicon-edit'></i></a>
+                        <a class='btn btn-xs btn-primary edit' href='" . route('dashboard.clients.orders.edit',[$order->client_id ,$order->id]) . "'><i class='glyphicon glyphicon-edit'></i></a>
                          <a class='btn btn-xs btn-danger delete'  data-id= '$order->id' data-url='" . route('dashboard.orders.destroy', $order->id) . "'><i class='glyphicon glyphicon-trash'></i></a>";
                 }
                  elseif (auth()->user()->can('update_orders')) {
                     return "<a class='btn btn-xs btn-success order-products'  data-url='" . route('dashboard.orders.show', $order->id) . "' data-method ='get'><i class='glyphicon  glyphicon-eye-open'></i></a>
-                        <a class='btn btn-xs btn-primary edit' data-url='" . route('dashboard.orders.edit', $order->id) . "' data-value = '" . $order->name . "'><i class='glyphicon glyphicon-edit'></i></a>
+                        <a class='btn btn-xs btn-primary edit' href='" . route('dashboard.clients.orders.edit', [$order->client_id ,$order->id]) . "' data-value = '" . $order->name . "'><i class='glyphicon glyphicon-edit'></i></a>
                         <a class='btn btn-xs btn-danger delete disabled'><i class='glyphicon glyphicon-trash'></i></a>";
                 } elseif (auth()->user()->can('delete_orders')) {
                     return "<a class='btn btn-xs btn-success order-products'  data-url='" . route('dashboard.orders.show', $order->id) . "' data-method ='get'><i class='glyphicon  glyphicon-eye-open'></i></a>
@@ -62,12 +62,7 @@ class OrderController extends Controller
 
     }//end of show
 
-    public function edit(Order $order)
-    {
-        $products = $order->products;
-        // return view('dashboard')
 
-    }//end of edit
 
     public function destroy(Order $order)
     {
