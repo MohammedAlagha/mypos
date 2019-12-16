@@ -16,105 +16,158 @@
     </div>
 </div>
 
-    <div class="contentpanel">
+<div class="contentpanel">
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="panel-heading">
-                    <h5 class="subtitle">@lang('site.categories')</h5>
-                </div>
-
-                <div class="panel-group" id="accordion">
-                    @foreach ($categories as $category)
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" class="collapsed" data-parent="#accordion"
-                                    href="#{{str_replace(' ','-',$category->translate(app()->getlocale())->name)}}">
-                                    {{$category->translate(app()->getlocale())->name}}
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="{{str_replace(' ','-',$category->translate(app()->getlocale())->name)}}"
-                            class="panel-collapse collapse">
-                            <div class="panel-body">
-                                @if ($category->products->count() > 0)
-                                <table class="table table-hover">
-                                    <tr>
-                                        <th>@lang('site.name')</th>
-                                        <th>@lang('site.stock')</th>
-                                        <th>@lang('site.price')</th>
-                                        <th>@lang('site.add')</th>
-                                    </tr>
-                                    @foreach ($category->products as $product)
-                                    <tr>
-                                        <td>{{$product->name}}</td>
-                                        <td>{{$product->stock}}</td>
-                                        <td>{{number_format($product->sale_price, 2)}}</td>
-                                        <td>
-                                            <a href="" id="product-{{$product->id}}" data-name="{{$product->name}}"
-                                                data-id="{{$product->id}}" data-price="{{$product->sale_price}}" data-stock="{{$product->stock}}"
-                                                class="btn btn-success btn-sm add-product-btn">
-                                                <i class="fa fa-plus"></i>
-
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </table>
-                                @else
-                                 @lang('site.no_records')
-                                @endif
-                             </div>
-                        </div>
-                    </div>
-                    @endforeach
-
-                </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel-heading">
+                <h5 class="subtitle">@lang('site.categories')</h5>
             </div>
 
-            <div class="col-sm-6">
+            <div class="panel-group" id="accordion">
+                @foreach ($categories as $category)
                 <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h5 class="subtitle">@lang('site.orders')</h5>
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" class="collapsed" data-parent="#accordion"
+                                href="#{{str_replace(' ','-',$category->translate(app()->getlocale())->name)}}">
+                                {{$category->translate(app()->getlocale())->name}}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="{{str_replace(' ','-',$category->translate(app()->getlocale())->name)}}"
+                        class="panel-collapse collapse">
+                        <div class="panel-body">
+                            @if ($category->products->count() > 0)
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>@lang('site.name')</th>
+                                    <th>@lang('site.stock')</th>
+                                    <th>@lang('site.price')</th>
+                                    <th>@lang('site.add')</th>
+                                </tr>
+                                @foreach ($category->products as $product)
+                                <tr>
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->stock}}</td>
+                                    <td>{{number_format($product->sale_price, 2)}}</td>
+                                    <td>
+                                        <a href="" id="product-{{$product->id}}" data-name="{{$product->name}}"
+                                            data-id="{{$product->id}}" data-price="{{$product->sale_price}}"
+                                            data-stock="{{$product->stock}}"
+                                            class="btn btn-success btn-sm add-product-btn">
+                                            <i class="fa fa-plus"></i>
+
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </table>
+                            @else
+                            @lang('site.no_records')
+                            @endif
                         </div>
-                    <div class="panel-footer">
-                        {!! Form::open(['route'=>['dashboard.clients.orders.store',$client->id],'class'=>'form-horizonta','id'=>'order-create','method'=>"post"]) !!}
-                            <table class="table table-hover mb30">
-                                    @include('partials._errors')
-                                    <thead>
-                                      <tr>
-                                        <th>@lang('site.product')</th>
-                                        <th>@lang('site.quantity')</th>
-                                        <th>@lang('site.price')</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody class="order-list">
-                                      {{-- <tr>
+                    </div>
+                </div>
+                @endforeach
+
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="subtitle">@lang('site.order')</h5>
+                </div>
+                <div class="panel-footer">
+                    {!!
+                    Form::open(['route'=>['dashboard.clients.orders.store',$client->id],'class'=>'form-horizonta','id'=>'order-create','method'=>"post"])
+                    !!}
+                    <table class="table table-hover mb30">
+                        @include('partials._errors')
+                        <thead>
+                            <tr>
+                                <th>@lang('site.product')</th>
+                                <th>@lang('site.quantity')</th>
+                                <th>@lang('site.price')</th>
+                            </tr>
+                        </thead>
+                        <tbody class="order-list">
+                            {{-- <tr>
                                         <td>Mark</td>
                                         <td>Otto</td>
                                         <td>@mdo</td>
                                       </tr> --}}
-                                    </tbody>
-                                  </table>
-                                  <div>@lang('site.total') :<span class="total-price"></span></div>
-                                  <br>
-                                  <button type="submit" class="btn btn-primary" id="create-order-form-btn">@lang('site.order_create')</button>
-                                  {!! Form::close() !!}
-                    </div><!-- panel-footer -->
-                </div><!-- panel -->
+                        </tbody>
+                    </table>
+                    <div>@lang('site.total') :<span class="total-price"></span></div>
+                    <br>
+                    <button type="submit" class="btn btn-primary"
+                        id="create-order-form-btn">@lang('site.order_create')</button>
+                    {!! Form::close() !!}
+                </div><!-- panel-footer -->
+            </div><!-- panel -->
+        </div>
+
+        <div class="row">
+            @if ($client->orders->count() > 0)
+            <div class=" col-md-offset-6  col-sm-6">
+                <div class="panel-heading">
+                    <h5 class="subtitle">@lang('site.previous_orders')<small> {{$client->orders->count()}}</small></h5>
+                </div>
+
+                <div class="panel-group" id="accordion">
+
+
+                    @foreach ($orders as $order)
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" class="collapsed" data-parent="#accordion"
+                                    href="#{{$order->id}}">
+                                    {{$order->created_at->toFormattedDateString()}}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="{{$order->id}}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table table-hover">
+                                    <tr>
+                                        <th>@lang('site.product')</th>
+                                        <th>@lang('site.quantity')</th>
+                                        <th>@lang('site.unit_price')</th>
+                                        <th>@lang('site.price')</th>
+                                    </tr>
+                                    @foreach ($order->products as $product)
+                                    <tr>
+                                        <td>{{$product->name}}</td>
+                                        <td>{{$product->pivot->quantity}}</td>
+                                        <td>{{number_format($product->sale_price, 2)}}</td>
+                                        <td>{{number_format($product->sale_price * $product->pivot->quantity, 2)}}</td>
+                                    </tr>
+                                    @endforeach
+                                </table>
+                                <div>@lang('site.total') :<span
+                                        class="total-price">{{number_format($order->total_price, 2)}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    {{$orders->links()}}
+                </div>
             </div>
+            @endif
+        </div>
+    </div><!-- row -->
 
-        </div><!-- row -->
+</div><!-- contentpanel -->
 
-    </div><!-- contentpanel -->
+@endsection
 
-    @endsection
+@push('script')
 
-    @push('script')
-
-    <script>
-        $(document).ready(function(){
+<script>
+    $(document).ready(function(){
             $('.add-product-btn').on('click',function(e) {
                 e.preventDefault();
                 $(this).removeClass('btn-success').addClass('btn-default disabled');
@@ -139,7 +192,7 @@
 
             })
 
-            $('body').on('click','.disabled',function(e) {    //I belive not nesssary
+            $('body').on('click','.disabled',function(e) {
                 e.preventDefault();
             })
 
@@ -186,5 +239,5 @@
 
 
 
-    </script>
-    @endpush
+</script>
+@endpush

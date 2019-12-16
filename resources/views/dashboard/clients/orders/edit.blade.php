@@ -108,6 +108,55 @@
             </div>
 
         </div><!-- row -->
+        <div class="row">
+                @if ($client->orders->count() > 0)
+            <div class=" col-md-offset-6  col-sm-6">
+                    <div class="panel-heading">
+                    <h5 class="subtitle">@lang('site.previous_orders')<small> {{$client->orders->count()}}</small></h5>
+                        </div>
+
+                        <div class="panel-group" id="accordion">
+
+
+                            @foreach ($orders as $order)
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" class="collapsed" data-parent="#accordion"
+                                            href="#{{$order->id}}">
+                                            {{$order->created_at->toFormattedDateString()}}
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="{{$order->id}}"
+                                    class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <table class="table table-hover">
+                                            <tr>
+                                                <th>@lang('site.product')</th>
+                                                <th>@lang('site.quantity')</th>
+                                                <th>@lang('site.unit_price')</th>
+                                                <th>@lang('site.price')</th>
+                                            </tr>
+                                            @foreach ($order->products as $product)
+                                            <tr>
+                                                <td>{{$product->name}}</td>
+                                                <td>{{$product->pivot->quantity}}</td>
+                                                <td>{{number_format($product->sale_price, 2)}}</td>
+                                                <td>{{number_format($product->sale_price * $product->pivot->quantity, 2)}}</td>
+                                            </tr>
+                                            @endforeach
+                                        </table>
+                                        <div>@lang('site.total') :<span class="total-price">{{number_format($order->total_price, 2)}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                            {{$orders->links()}}
+                        </div>
+            </div>
+            @endif
+        </div>
 
     </div><!-- contentpanel -->
 

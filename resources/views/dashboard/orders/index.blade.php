@@ -151,7 +151,7 @@
 
                 header:`<br>
                         <h5>{{__('site.client_name')}}: ${client_name}<h5/>
-                        <h5>{{__('site.order_number')}}:${order_number}<h5/>
+                        <h5>{{__('site.order_number')}}: ${order_number}<h5/>
                         <br>`
                         });
          })

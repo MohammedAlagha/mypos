@@ -16,6 +16,7 @@ return [
         'clients'                  =>  'العملاء',
         'users'                    =>  'المشرفين',
         'orders'                   =>  'الطلبيات',
+        'order'                    =>  'طلبية',
 
         'category'                 =>  'الفئة',
         'product'                  =>   'المنتج',
@@ -44,6 +45,7 @@ return [
         'order_edit'               =>  'تعديل طلبية',
         'orders_show'              =>  'عرض الطلبيات',
         'order_number'             =>  'رقم الطلبية',
+        'previous_orders'          =>  'الطلبيات السابقة',
 
         'user_create'              =>  'انشاء مشرف',
         'user_edit'                =>  'تعديل مشرف',
@@ -82,6 +84,7 @@ return [
         'price'                    =>  'السعر',
         'quantity'                 =>  'الكمية',
         'total'                    =>  'المجموع',
+        'unit_price'               =>  'سعر الوحدة',
 
         'client_name'              =>  'اسم العميل',
         'phone'                    =>  'الهاتف',
