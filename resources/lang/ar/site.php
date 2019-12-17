@@ -49,6 +49,7 @@ return [
 
         'user_create'              =>  'انشاء مشرف',
         'user_edit'                =>  'تعديل مشرف',
+        'user_show'                =>  'عرض مشرف',
 
         'name'                     =>  'الاسم',
         'id'                       =>  'رقم',

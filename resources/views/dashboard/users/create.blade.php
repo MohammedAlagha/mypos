@@ -1,5 +1,7 @@
 @extends('layouts.dashboard.app')
 
+@section('title',__('site.user_create'))
+
 @section('content')
 
 <div class="pageheader">

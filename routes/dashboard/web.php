@@ -15,7 +15,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
             Route::get('/', 'WelcomeController@index')->name('welcome');
 
             // users routes
-            Route::resource('users', 'UserController')->except(['show']);
+            Route::resource('users', 'UserController');
             Route::get('users-data', 'UserController@data')->name('users.data');
 
              // categories routes

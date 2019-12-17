@@ -37,19 +37,24 @@ class UserController extends Controller
         ->addColumn('action',function($user){
 
             if (auth()->user()->can(['update_users','delete_users'],true)) {
-                return "<a class='btn btn-xs btn-primary edit' href='".route('dashboard.users.edit',$user->id)."' data-value = '".$user->name."'><i class='glyphicon glyphicon-edit'></i></a>
+                return "<a class='btn btn-xs btn-success ' href='".route('dashboard.users.show',$user->id)."' data-value = '".$user->name."'><i class='glyphicon glyphicon-eye-open'></i></a>
+                <a class='btn btn-xs btn-primary edit' href='".route('dashboard.users.edit',$user->id)."' data-value = '".$user->name."'><i class='glyphicon glyphicon-edit'></i></a>
                          <a class='btn btn-xs btn-danger delete'  data-id= '$user->id' data-url='". route('dashboard.users.destroy',$user->id) ."'><i class='glyphicon glyphicon-trash'></i></a>";
 
             }elseif(auth()->user()->can('update_users')){
-                return "<a class='btn btn-xs btn-primary edit' href='".route('dashboard.users.edit',$user->id)."' data-value = '".$user->name."'><i class='glyphicon glyphicon-edit'></i></a>
+                return "
+                <a class='btn btn-xs btn-success ' href='".route('dashboard.users.show',$user->id)."' data-value = '".$user->name."'><i class='glyphicon glyphicon-eye-open'></i></a>
+                <a class='btn btn-xs btn-primary edit' href='".route('dashboard.users.edit',$user->id)."' data-value = '".$user->name."'><i class='glyphicon glyphicon-edit'></i></a>
                 <a class='btn btn-xs btn-danger delete disabled'><i class='glyphicon glyphicon-trash'></i></a>";
 
             }elseif(auth()->user()->can('delete_users')){
-                 return "<a class='btn btn-xs btn-primary edit disabled'><i class='glyphicon glyphicon-edit'></i></a>
+                 return "<a class='btn btn-xs btn-success ' href='".route('dashboard.users.show',$user->id)."' data-value = '".$user->name."'><i class='glyphicon glyphicon-eye-open'></i></a>
+                 <a class='btn btn-xs btn-primary edit disabled'><i class='glyphicon glyphicon-edit'></i></a>
                      <a class='btn btn-xs btn-danger delete'  data-id= '$user->id' data-url='". route('dashboard.users.destroy',$user->id) ."'><i class='glyphicon glyphicon-trash'></i></a>";
 
             }else {
-                return "<a class='btn btn-xs btn-primary edit disabled'><i class='glyphicon glyphicon-edit'></i></a>
+                return "<a class='btn btn-xs btn-success ' href='".route('dashboard.users.show',$user->id)."' data-value = '".$user->name."'><i class='glyphicon glyphicon-eye-open'></i>show
+                <a class='btn btn-xs btn-primary edit disabled'><i class='gleyescon glyphicon-edit'></i></a>
                 <a class='btn btn-xs btn-danger delete disabled' ><i class='glyphicon glyphicon-trash'></i></a>";
 
             }
@@ -103,6 +108,11 @@ class UserController extends Controller
         return redirect()->route('dashboard.users.index');
 
     }//end of store
+
+    public function show(User $user)
+    {
+        return view('dashboard.users.show',compact('user'));
+    }
 
 
 
