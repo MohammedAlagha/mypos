@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:read_categories'])->only(['index','show']);
+        $this->middleware(['permission:delete_categories'])->only('destroy');
+
+    }
+
     public function index()
     {
         return view('dashboard.orders.index');

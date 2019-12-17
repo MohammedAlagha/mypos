@@ -11,6 +11,15 @@ use Illuminate\Http\Request;
 class ClientController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware(['permission:read_clients'])->only(['index','show']);
+        $this->middleware(['permission:create_clients'])->only('create');
+        $this->middleware(['permission:update_clients'])->only('edit');
+        $this->middleware(['permission:delete_clients'])->only('destroy');
+
+    }
+
     public function index()
     {
         return view('dashboard.clients.index');
