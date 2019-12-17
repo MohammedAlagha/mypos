@@ -65,6 +65,7 @@ return [
 
         'created_at'               =>  'أنشئ في',
         'updated_at'               =>  'اخر تعديل',
+        'date'                     =>  'التاريخ',
 
         'options'                  =>  'خيارات',
 

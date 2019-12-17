@@ -22,7 +22,7 @@
          <br>
 
          <button type="button" class="btn btn-primary" id="print-order"
-             data-client_name="{{$order->client->name}}" data-order_number="{{$order->id}}"    {{-- this data for printing--}}
+          data-client_name="{{$order->client->name}}" data-order_number="{{$order->id}}" data-created_at="{{$order->created_at}}"    {{-- this data for printing--}}
          ><i class="glyphicon glyphicon-print"></i>  @lang('site.print')</button>
 
         @else
