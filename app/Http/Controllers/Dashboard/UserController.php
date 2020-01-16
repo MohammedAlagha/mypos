@@ -127,7 +127,7 @@ class UserController extends Controller
         $request_data = $request->except(['permission','image']);
 
         if($request->image){
-            if($request->image != 'default.png'){                 // I think it not nessary because $request->image never have default image
+            if($request->image != 'default.png'){
                 Storage::disk('public_uploads')->delete('/user_images/' . $user->image);
             }
                 Image::make($request->image)->resize(300,null,function($constraint){
