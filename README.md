@@ -2,7 +2,7 @@
 
 
 ## About my pos
-Open source simple mypos Laravel 6 .
+Open source  mypos Laravel 6 .
 
 ## Version
 laravel 5.7 - Bootstrap 4
