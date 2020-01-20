@@ -1,7 +1,7 @@
 
 
 
-## About todos
+## About my pos
 Open source simple todos Laravel 6 .
 
 ## Version
